@@ -6,13 +6,13 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 11:56:06 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/10 10:49:51 by vkannema         ###   ########.fr       */
+/*   Updated: 2016/12/13 15:20:13 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_put_line(char *str)
+static char		*ft_put_line(char *str)
 {
 	int		i;
 	int		len;
@@ -64,7 +64,6 @@ int			get_next_line(const int fd, char **line)
 		return (-1);
 	if (!buf)
 		buf = ft_strnew(1);
-	ret = 2;
 	while (!(ft_memchr(buf, '\n', ft_strlen(buf))))
 	{
 		ret = read(fd, str, BUFF_SIZE);

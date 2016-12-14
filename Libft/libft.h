@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 11:50:45 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/10 10:49:40 by vkannema         ###   ########.fr       */
+/*   Updated: 2016/12/13 15:23:04 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,6 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 size_t				ft_lstlen(t_list *alst);
 void				ft_lstrev(t_list **begin_list);
 int					get_next_line(const int fd, char **line);
-char				*ft_free_join(char *dest, char *buff, int i);
+char				*ft_free_join(char *s1, char *s2, int i);
 
 #endif
