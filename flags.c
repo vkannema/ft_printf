@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   flags.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/13 15:31:30 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/14 12:44:31 by vkannema         ###   ########.fr       */
+/*   Created: 2016/12/16 10:59:09 by vkannema          #+#    #+#             */
+/*   Updated: 2016/12/16 11:05:53 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <libft.h>
-# include <stdarg.h>
+#include "libftprintf.h"
 
-void	ft_printf_me(char *str);
-
-typedef struct	s_type
+void	add_flag(t_env *env, char value, int pos)
 {
-	int		d;
-	char	*s;
-	long	ld;
-	char	c;
 
-}				t_ype;
+}
 
-#endif
+int		get_flag(char c)
+{
+	const char	*flag;
+	int			i;
+
+	i = 0;
+	flag = "#0-+ ";
+	while (flag[i])
+	{
+		if (c == flag[i])
+			return(1);
+		i++;
+	}
+	return (0);
+}

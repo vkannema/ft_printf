@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/12 13:20:34 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/16 09:06:31 by vkannema         ###   ########.fr       */
+/*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
+/*   Updated: 2016/12/16 11:30:44 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "libftprintf.h"
+#ifndef LIBFTPRINTF_H
+# define LIBFTPRINTF_H
+# include <unistd.h>
+# include <stdarg.h>
 
-int	main()
+typedef	struct	s_env
 {
-	printf("%d\n", printf("printf octal : %x\n", 42));
-	ft_putoctal(42);
-//	ft_printf("Mine : %d, % d, %d, %s, %s, %c\n", 50 , 20 , 30, "ok", "oklm", 'c');
-//	printf("test %d", ft_printf("test"));
-	return (0);
-}
+	int			i;
+	int			size;
+	int			flag;
+	char		type;
+}				t_env;
+
+int		ft_printf(const char *format, ...);
+int		ft_putchar(char c);
+void	ft_putoctal(unsigned int nb);
+int		ft_putstr(const char *s);
+int		check_type(char c);
+void	change_arg(va_list ap, t_env *env, char type);
+#endif

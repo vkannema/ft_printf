@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putoctal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/12 13:20:34 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/16 09:06:31 by vkannema         ###   ########.fr       */
+/*   Created: 2016/12/15 21:19:26 by vkannema          #+#    #+#             */
+/*   Updated: 2016/12/16 10:33:35 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libftprintf.h"
 
-int	main()
+void	ft_putoctal(unsigned int nb)
 {
-	printf("%d\n", printf("printf octal : %x\n", 42));
-	ft_putoctal(42);
-//	ft_printf("Mine : %d, % d, %d, %s, %s, %c\n", 50 , 20 , 30, "ok", "oklm", 'c');
-//	printf("test %d", ft_printf("test"));
-	return (0);
+	size_t	beg;
+	size_t	end;
+	char	*base;
+
+	base = "01234567";
+	end = nb % 8;
+	beg = (nb - end) / 8;
+	if (beg)
+		ft_putoctal(beg);
+	ft_putchar(base[end]);
 }

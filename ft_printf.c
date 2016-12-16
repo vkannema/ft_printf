@@ -6,43 +6,48 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 15:44:55 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/14 12:49:38 by vkannema         ###   ########.fr       */
+/*   Updated: 2016/12/16 11:30:47 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
+
+t_env	*init_env(void)
+{
+	t_env	*env;
+
+	env->i = 0;
+	env->size = 0;
+	env->flag = 0;
+	return (env);
+}
+
+void	init_flag(t_env *env)
+{
+	env->flag = 1;
+	env->i++;
+}
 
 int	ft_printf(const char *format, ...)
 {
-	int			i;
+	t_env		*env;
 	va_list		ap;
-	t_ype		*type;
-	i = 0;
+
 	va_start(ap, format);
-	while (format[i])
+	env = init_env();
+	while (format[env->i])
 	{
-		if (format[i] == '%')
-		{
-			if (format[i + 1] == 'd')
-			{
-				type->d = va_arg(ap, int);
-				ft_putnbr(type->d);
-			}
-			if (format[i + 1] == 's')
-			{
-				type->s = va_arg(ap, char *);
-				ft_putstr(type->s);
-			}
-			if (format[i + 1] == 'c')
-			{
-				type->c = va_arg(ap, char);
-				ft_putchar(type->c);
-			}
-			i+=2;
-		}
-		ft_putchar(format[i]);
-		i++;
+		if (format[env->i] == '%' && env->flag == 0)
+			init_flag(env);
+/*		if (env->flag == 1 && check_flag(format[env->i]) != 0)
+			add_flag(env, )
+*/
+		else if (env->flag == 1 && check_type(format[env->i]) != 0)
+			change_arg(ap, env, format[env->i]);
+		else
+			env->size += ft_putchar(format[env->i]);
+		env->i++;
 	}
 	va_end(ap);
-	return (i);
+	return (env->size);
 }

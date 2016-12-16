@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/12 13:20:34 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/16 09:06:31 by vkannema         ###   ########.fr       */
+/*   Created: 2016/12/16 11:12:12 by vkannema          #+#    #+#             */
+/*   Updated: 2016/12/16 11:13:54 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libftprintf.h"
 
-int	main()
+int	check_type(char c)
 {
-	printf("%d\n", printf("printf octal : %x\n", 42));
-	ft_putoctal(42);
-//	ft_printf("Mine : %d, % d, %d, %s, %s, %c\n", 50 , 20 , 30, "ok", "oklm", 'c');
-//	printf("test %d", ft_printf("test"));
+	const char	*types;
+	int			i;
+
+	i = 0;
+	types = "sSpdDioOuUxXcC";
+	while (types[i])
+	{
+		if (c == types[i])
+			return (1);
+		i++;
+	}
 	return (0);
 }
