@@ -6,11 +6,11 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:19:23 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/16 08:22:33 by vkannema         ###   ########.fr       */
+/*   Updated: 2016/12/21 21:33:11 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 int		ft_putstr(const char *s)
 {
@@ -19,7 +19,7 @@ int		ft_putstr(const char *s)
 	i = 0;
 	while (s[i])
 	{
-		ft_putchar(s[i])
+		ft_putchar(s[i]);
 		i++;
 	}
 	return (i);

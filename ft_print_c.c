@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags.c                                            :+:      :+:    :+:   */
+/*   ft_print_c.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 10:59:09 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/21 21:37:21 by vkannema         ###   ########.fr       */
+/*   Created: 2016/12/21 20:58:53 by vkannema          #+#    #+#             */
+/*   Updated: 2016/12/21 21:32:10 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-/*
-void	add_flag(t_env *env, char value, int pos)
+
+int	ft_print_c(va_list ap, t_env *env)
 {
+	int		ret;
+	char	c;
 
-}
-*/
-
-int		get_flag(char c)
-{
-	const char	*flag;
-	int			i;
-
-	i = 0;
-	flag = "#0-+ ";
-	while (flag[i])
-	{
-		if (c == flag[i])
-			return(1);
-		i++;
-	}
-	return (0);
+	c = va_arg(ap, int);
+	ret = ft_putchar(c);
+	env->size += ret;
+	return (ret);
 }

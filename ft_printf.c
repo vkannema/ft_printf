@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 15:44:55 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/16 11:30:47 by vkannema         ###   ########.fr       */
+/*   Updated: 2016/12/21 21:41:58 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_env	*init_env(void)
 {
 	t_env	*env;
 
+	env = (t_env *)malloc(sizeof(t_env));
 	env->i = 0;
 	env->size = 0;
 	env->flag = 0;
@@ -43,7 +44,7 @@ int	ft_printf(const char *format, ...)
 			add_flag(env, )
 */
 		else if (env->flag == 1 && check_type(format[env->i]) != 0)
-			change_arg(ap, env, format[env->i]);
+			print_arg(ap, env, format[env->i]);
 		else
 			env->size += ft_putchar(format[env->i]);
 		env->i++;

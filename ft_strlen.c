@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags.c                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 10:59:09 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/21 21:37:21 by vkannema         ###   ########.fr       */
+/*   Created: 2016/12/21 21:26:09 by vkannema          #+#    #+#             */
+/*   Updated: 2016/12/21 21:27:12 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-/*
-void	add_flag(t_env *env, char value, int pos)
-{
 
-}
-*/
-
-int		get_flag(char c)
+int	ft_strlen(char *str)
 {
-	const char	*flag;
-	int			i;
+	int	i;
 
 	i = 0;
-	flag = "#0-+ ";
-	while (flag[i])
-	{
-		if (c == flag[i])
-			return(1);
+	while (str[i])
 		i++;
-	}
-	return (0);
+	return (i);
 }
