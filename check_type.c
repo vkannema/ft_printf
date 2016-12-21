@@ -6,13 +6,13 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 11:12:12 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/16 11:13:54 by vkannema         ###   ########.fr       */
+/*   Updated: 2016/12/21 22:27:21 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	check_type(char c)
+int	check_type(char c, t_env *env)
 {
 	const char	*types;
 	int			i;
@@ -22,7 +22,10 @@ int	check_type(char c)
 	while (types[i])
 	{
 		if (c == types[i])
+		{
+			env->type = types[i];
 			return (1);
+		}
 		i++;
 	}
 	return (0);

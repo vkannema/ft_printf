@@ -1,5 +1,0 @@
-In file included from /Users/vkannema/Documents/ft_printf/ft_printf.c:13:
-/Users/vkannema/Documents/ft_printf/ft_printf.h:15:11: fatal error: 'libft.h' file not found
-# include <libft.h>
-          ^
-1 error generated.
