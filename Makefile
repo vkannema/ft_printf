@@ -6,7 +6,7 @@
 #    By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/21 21:10:13 by vkannema          #+#    #+#              #
-#    Updated: 2016/12/21 21:59:06 by vkannema         ###   ########.fr        #
+#    Updated: 2016/12/22 18:14:47 by vkannema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,11 @@ SRC = ft_print_s.c \
 	ft_printf.c \
 	flags.c \
 	check_type.c \
-	ft_strlen.c
+	ft_strlen.c \
+	ft_print_o.c \
+	ft_print_x.c \
+	ft_print_X.c \
+	ft_print_di.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -36,9 +40,9 @@ $(NAME) :
 	@echo "libftprintf done"
 
 clean :
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re : fclean all
