@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 18:01:21 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/22 18:18:48 by vkannema         ###   ########.fr       */
+/*   Updated: 2016/12/27 14:49:43 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ft_max_value(void)
 	}
 }
 
-int		ft_putnbr(int n, int i)
+void		ft_putnbr(int n)
 {
 	if (n < 0 && n > -2147483648)
 	{
@@ -37,26 +37,25 @@ int		ft_putnbr(int n, int i)
 	{
 		ft_putchar('-');
 		ft_max_value();
-		return (10);
 	}
 	if (n > 9)
 	{
-		ft_putnbr(n / 10, i);
-		ft_putnbr(n % 10, i);
-		i++;
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
 	}
 	if (n <= 9 && n >= 0)
 		ft_putchar(n + '0');
-	return (i);
+//	printf("i %d\n", i);
 }
 
 int	ft_print_di(va_list ap, t_env *env)
 {
 	int	ret;
 	int	nb;
-	(void) env;
 
 	nb = va_arg(ap, int);
-	ret = ft_putnbr(nb, 0);
+	ft_putnbr(nb);
+	ret = ft_size_nbr(nb);
+	env->size += ret;
 	return (ret);
 }

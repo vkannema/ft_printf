@@ -6,7 +6,7 @@
 #    By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/21 21:10:13 by vkannema          #+#    #+#              #
-#    Updated: 2016/12/22 18:14:47 by vkannema         ###   ########.fr        #
+#    Updated: 2016/12/27 21:35:09 by vkannema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,14 @@ SRC = ft_print_s.c \
 	print_arg.c \
 	ft_printf.c \
 	flags.c \
+	ft_size_nbr.c \
 	check_type.c \
 	ft_strlen.c \
 	ft_print_o.c \
 	ft_print_x.c \
 	ft_print_X.c \
-	ft_print_di.c
+	ft_print_di.c \
+	ft_print_p.c
 
 OBJ = $(SRC:.c=.o)
 

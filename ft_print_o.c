@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 17:04:51 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/22 17:11:40 by vkannema         ###   ########.fr       */
+/*   Updated: 2016/12/27 15:00:42 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	ft_print_o(va_list ap, t_env *env)
 	unsigned int nb;
 
 	nb = va_arg(ap, unsigned int);
-	ret = ft_putoctal(nb, 0);
+	ft_putoctal(nb);
+	ret = ft_size_nbr(nb) + 1;
 	env->size += ret;
 	return (ret);
 }

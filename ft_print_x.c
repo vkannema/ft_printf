@@ -6,14 +6,14 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 17:15:56 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/22 17:48:43 by vkannema         ###   ########.fr       */
+/*   Updated: 2016/12/27 14:55:41 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <stdio.h>
 
-static int	ft_puthexa(unsigned int nb, int ret)
+void	ft_puthexa(unsigned int nb)
 {
 	size_t beg;
 	size_t end;
@@ -23,9 +23,8 @@ static int	ft_puthexa(unsigned int nb, int ret)
 	end = nb % 16;
 	beg = (nb - end) / 16;
 	if (beg)
-		ft_puthexa(beg, ret++);
+		ft_puthexa(beg);
 	ft_putchar(base[end]);
-	return (ret);
 }
 
 int	ft_print_x(va_list ap, t_env *env)
@@ -34,8 +33,9 @@ int	ft_print_x(va_list ap, t_env *env)
 	unsigned int	nb;
 
 	nb = va_arg(ap, unsigned int);
-	ret = ft_puthexa(nb, 1);
-	env->size = ret;
+	ft_puthexa(nb);
+	ret = ft_size_nbr(nb);
+	env->size += ret;
 	return (ret);
 
 }

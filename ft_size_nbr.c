@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putoctal.c                                      :+:      :+:    :+:   */
+/*   ft_size_nbr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/15 21:19:26 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/27 14:49:27 by vkannema         ###   ########.fr       */
+/*   Created: 2016/12/27 14:47:24 by vkannema          #+#    #+#             */
+/*   Updated: 2016/12/27 14:49:34 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	ft_putoctal(unsigned int nb)
+int	ft_size_nbr(int n)
 {
-	size_t	beg;
-	size_t	end;
-	const char	*base;
+	unsigned int	ind;
+	int				size;
 
-
-	base = "01234567";
-	end = nb % 8;
-	beg = (nb - end) / 8;
-	if (beg)
-		ft_putoctal(beg);
-	ft_putchar(base[end]);
+	size = 0;
+	if (n < 0)
+		ind = -n;
+	else if (n == 0)
+		return (1);
+	else
+		ind = n;
+	while (ind > 0)
+	{
+		ind = ind / 10;
+		size++;
+	}
+	return (size);
 }

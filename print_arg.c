@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 11:15:38 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/22 18:16:38 by vkannema         ###   ########.fr       */
+/*   Updated: 2016/12/27 21:37:18 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static int		ft_get_type(char c)
 void	ft_init_func(int (**function_type)(va_list ap, t_env *env))
 {
 	function_type[0] = ft_print_s;
-/*	function_type[1] = ft_print_S;
+//	function_type[1] = ft_print_S;
 	function_type[2] = ft_print_p;
-*/	function_type[3] = ft_print_di;
+	function_type[3] = ft_print_di;
 	function_type[4] = ft_print_di;
 	function_type[5] = ft_print_di;
 	function_type[6] = ft_print_o;
@@ -41,7 +41,7 @@ void	ft_init_func(int (**function_type)(va_list ap, t_env *env))
 /*	function_type[8] = ft_print_u;
 	function_type[9] = ft_print_u;
 */	function_type[10] = ft_print_x;
-	function_type[11] = ft_print_X;
+//	function_type[11] = ft_print_X;
 	function_type[12] = ft_print_c;
 //	function_type[13] = ft_print_C;
 //	function_type[14] = ft_print_pe;
