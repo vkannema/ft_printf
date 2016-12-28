@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/27 21:34:51 by vkannema         ###   ########.fr       */
+/*   Updated: 2016/12/28 12:45:15 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,6 @@ int				ft_print_x(va_list ap, t_env *env);
 int				ft_print_X(va_list ap, t_env *env);
 int				ft_print_di(va_list ap, t_env *env);
 int				ft_print_p(va_list ap, t_env *env);
+int				ft_print_xcap(va_list ap, t_env *env);
+int				ft_print_pe(va_list ap, t_env *env);
 #endif
