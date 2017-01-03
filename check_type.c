@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 11:12:12 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/21 22:27:21 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/03 09:45:33 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_type(char c, t_env *env)
 	int			i;
 
 	i = 0;
-	types = "sSpdDioOuUxXcC";
+	types = "sSpdDioOuUxXcC%";
 	while (types[i])
 	{
 		if (c == types[i])
