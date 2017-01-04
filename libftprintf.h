@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 11:42:42 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/04 14:55:36 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,12 @@ typedef	struct		s_env
 	int				flag;
 	int				type;
 	char			conv;
+	int				precision;
+	int				width;
 	t_flag_list		*flags;
 }					t_env;
+
+
 
 /*
 Libft functions
@@ -55,14 +59,16 @@ int					ft_putchar(char c);
 int					ft_putstr(const char *s);
 void				ft_putoctal(unsigned int nb);
 int					ft_size_nbr(int n);
+int					ft_atoi(const char *str);
+void				ft_putnbr(int n);
 
 
 int					ft_printf(const char *format, ...);
 int					check_type(char c, t_env *env);
 void				print_arg(va_list ap, t_env *env, char type);
-int					get_width(const char *format, int	i, t_env *env);
+//int					get_width(const char *format, int	i, t_env *env);
 int					get_precision(const char *format, int i, t_env *env);
-
+int					get_precision_star(t_env *env, va_list ap);
 /*
 Print types
 */
@@ -76,6 +82,13 @@ int					ft_print_di(va_list ap, t_env *env);
 int					ft_print_p(va_list ap, t_env *env);
 int					ft_print_xcap(va_list ap, t_env *env);
 int					ft_print_pe(va_list ap, t_env *env);
+
+/*
+Precision
+*/
+
+int					print_precision_di(int nb, t_env *env);
+int					print_precision_s(char *str, t_env *env);
 
 /*
 FLAGS

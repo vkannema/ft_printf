@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 11:15:38 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 11:43:24 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/04 15:59:21 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ void	print_arg(va_list ap, t_env *env, char type)
 
 	env->type = type;
 	ft_init_func(function_type);
+
 	function_type[ft_get_type(env->conv)](ap, env);
 }

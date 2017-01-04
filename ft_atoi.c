@@ -1,48 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/10 10:43:43 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 12:39:09 by vkannema         ###   ########.fr       */
+/*   Created: 2016/08/10 16:23:41 by vkannema          #+#    #+#             */
+/*   Updated: 2017/01/04 12:21:33 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	ft_max_value(void)
+int	ft_atoi(const char *str)
 {
-	const char	*str;
-	int			i;
+	int i;
+	int inf;
+	int nb_final;
 
-	str = "2147483648";
 	i = 0;
-	while (str[i] != '\0')
+	nb_final = 0;
+	inf = 1;
+	while ((str[i] > 8 && str[i] < 14) || str[i] == 32)
 	{
-		ft_putchar(str[i]);
 		i++;
 	}
-}
-
-void		ft_putnbr(int n)
-{
-	if (n < 0 && n > -2147483648)
+	if (str[i] == '-')
 	{
-		n = -n;
-		ft_putchar('-');
+		inf = -1;
+		i++;
 	}
-	if (n == -2147483648)
+	if (str[i] == '+' && inf != -1)
+		i++;
+	while (str[i] > 47 && str[i] < 58)
 	{
-		ft_putchar('-');
-		ft_max_value();
+		nb_final = nb_final * 10;
+		nb_final = nb_final + (str[i] - 48);
+		i++;
 	}
-	if (n > 9)
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
-	if (n <= 9 && n >= 0)
-		ft_putchar(n + '0');
+	return (nb_final * inf);
 }
