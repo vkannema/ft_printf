@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   width.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/21 21:26:09 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 11:43:17 by vkannema         ###   ########.fr       */
+/*   Created: 2017/01/04 11:32:12 by vkannema          #+#    #+#             */
+/*   Updated: 2017/01/04 11:34:05 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_strlen(char *str)
+int	get_width(t_env *env, va_list ap, char *str)
 {
-	int	i;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
 }

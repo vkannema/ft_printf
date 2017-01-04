@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/21 21:26:09 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 11:43:17 by vkannema         ###   ########.fr       */
+/*   Created: 2016/11/04 12:17:49 by vkannema          #+#    #+#             */
+/*   Updated: 2017/01/04 11:38:21 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_strlen(char *str)
+int	ft_isdigit(int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	if (c <= '9' && c >= '0')
+		return (1);
+	else
+		return (0);
 }

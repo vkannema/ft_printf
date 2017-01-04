@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 10:21:15 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/04 11:42:42 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <stdio.h>
+
+/*
+Env
+*/
 
 typedef struct		s_flag
 {
@@ -42,16 +46,22 @@ typedef	struct		s_env
 	t_flag_list		*flags;
 }					t_env;
 
-
-
+/*
+Libft functions
+*/
+int					ft_isdigit(int c);
 int					ft_strlen(char *str);
-int					ft_printf(const char *format, ...);
 int					ft_putchar(char c);
-void				ft_putoctal(unsigned int nb);
 int					ft_putstr(const char *s);
+void				ft_putoctal(unsigned int nb);
+int					ft_size_nbr(int n);
+
+
+int					ft_printf(const char *format, ...);
 int					check_type(char c, t_env *env);
 void				print_arg(va_list ap, t_env *env, char type);
-int					ft_size_nbr(int n);
+int					get_width(const char *format, int	i, t_env *env);
+int					get_precision(const char *format, int i, t_env *env);
 
 /*
 Print types
@@ -71,11 +81,12 @@ int					ft_print_pe(va_list ap, t_env *env);
 FLAGS
 */
 
+void				add_flag(t_env *env, char value, int pos);
 int					check_flag(char c);
 int					zero_flag(t_env *env);
 int					space_flag(t_env *env);
 int					pos_flag(t_env *env);
 int					neg_flag(t_env *env);
-int					hastag_flag(t_env *env);
+int					hashtag_flag(t_env *env);
 
 #endif

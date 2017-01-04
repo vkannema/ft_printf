@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 15:44:55 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 08:42:10 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/04 11:42:44 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[env->i] == '%')
 			init_conv(env);
-/*		if (env->flag == 1 && check_flag(format[env->i]) != 0)
-			add_flag(env, )
-*/
+		else if (env->conv == 1 && check_flag(format[env->i]) != 0)
+			add_flag(env, format[env->i], env->i);
+		else if (format[env->i] == '.' && env->conv == 1)
+			env->i = get_precision(format, env->i, env);
 		else if (env->conv == 1 && check_type(format[env->i], env) != 0)
 			print_arg(ap, env, format[env->i]);
 		else

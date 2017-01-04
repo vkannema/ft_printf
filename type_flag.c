@@ -6,13 +6,13 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 08:26:28 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 10:21:31 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/04 11:42:41 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	hastag_flag(t_env *env)
+int	hashtag_flag(t_env *env)
 {
 	t_flag	*tmp;
 

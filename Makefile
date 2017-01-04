@@ -6,7 +6,7 @@
 #    By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/21 21:10:13 by vkannema          #+#    #+#              #
-#    Updated: 2016/12/28 12:45:57 by vkannema         ###   ########.fr        #
+#    Updated: 2017/01/04 11:44:13 by vkannema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,11 @@ SRC = ft_putchar.c \
 	ft_print_p.c \
 	ft_print_s.c \
 	ft_print_c.c \
-	ft_print_pe.c
+	ft_print_pe.c \
+	ft_isdigit.c \
+	width.c \
+	precision.c \
+	type_flag.c
 
 OBJ = $(SRC:.c=.o)
 
