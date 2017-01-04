@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 11:12:12 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/03 09:45:33 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/04 10:21:28 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_type(char c, t_env *env)
 	{
 		if (c == types[i])
 		{
-			env->type = types[i];
+			env->conv = types[i];
 			return (1);
 		}
 		i++;
