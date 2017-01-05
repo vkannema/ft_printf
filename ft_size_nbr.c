@@ -6,11 +6,30 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 14:47:24 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 11:43:16 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/05 12:49:50 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+int	ft_size_oct(unsigned int nb, int i)
+{
+	{
+		size_t	beg;
+		size_t	end;
+
+		end = nb % 8;
+		beg = (nb - end) / 8;
+		i++;
+		while (beg)
+		{
+			end = beg % 8;
+			beg = (beg - end) / 8;
+			i++;
+		}
+		return (i);
+	}
+}
 
 int	ft_size_nbr(int n)
 {
@@ -18,6 +37,8 @@ int	ft_size_nbr(int n)
 	int				size;
 
 	size = 0;
+	if (n >= 0 && n <= 9)
+		return (1);
 	if (n < 0)
 		ind = -n;
 	else if (n == 0)

@@ -6,11 +6,28 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 17:15:56 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 11:43:11 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/05 09:05:55 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+int	ft_get_size_hexa(unsigned int nb, int i)
+{
+	size_t	beg;
+	size_t	end;
+
+	end = nb % 16;
+	beg = (nb - end) / 16;
+	i++;
+	while (beg)
+	{
+		end = beg % 16;
+		beg = (beg - end) / 16;
+		i++;
+	}
+	return (i);
+}
 
 void	ft_puthexa(unsigned int nb)
 {
@@ -33,10 +50,18 @@ int	ft_print_x(va_list ap, t_env *env)
 
 	ret = 0;
 	nb = va_arg(ap, unsigned int);
-	if (hashtag_flag(env) == 1)
+/*	if (hashtag_flag(env) == 1)
 		ret += ft_putstr("0x");
-	ft_puthexa(nb);
-	ret += ft_size_nbr(nb);
+
+*/
+	if (env->precision == -1)
+	{
+		ret += ft_get_size_hexa(nb, 0);
+		ft_puthexa(nb);
+		env->size += ret;
+		return (ret);
+	}
+	ret += print_precision_x(nb, env);
 	env->size += ret;
 	return (ret);
 }

@@ -1,0 +1,6 @@
+150 / 197 for now
+
+lldb -> r => montre ton segfault en detail
+	 -> p => pk ca segfault
+gcc -g => compilateur garde code source
+gcc -fsanitize=adress => segfault nazi
