@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_s.c                                       :+:      :+:    :+:   */
+/*   print_width_s_minus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/21 20:34:30 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/06 14:49:54 by vkannema         ###   ########.fr       */
+/*   Created: 2017/01/06 13:56:03 by vkannema          #+#    #+#             */
+/*   Updated: 2017/01/06 14:49:53 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,28 +45,25 @@ static int	print_width(char *str, t_env *env)
 	return (width);
 }
 
-int	ft_print_s(va_list ap, t_env *env)
+int	print_width_s_minus(char *str, t_env *env)
 {
-	int		ret;
-	char	*str;
+	int	ret;
 
-	str = va_arg(ap, char *);
-	if (neg_flag(env) == 1)
-		return (print_width_s_minus(str, env));
 	ret = 0;
 	if (!(str))
 	{
 		ret += ft_putstr("(null)");
+		ret += print_width("(null)", env);
 		return (ret);
 	}
-	if (env->width != -1)
-		ret = print_width(str, env);
 	if (env->precision == -1)
 	{
 		ret = ft_putstr(str);
 		env->size += ret;
 		return (ret);
 	}
+	if (env->width != -1)
+		ret += print_width(str, env);
 	env->size += print_precision_s(str, env);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 10:59:09 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/06 12:51:02 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/06 13:36:00 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		check_flag(char c)
 	int			i;
 
 	i = 0;
-	flags = "#0-+ ";
+	flags = "#-+ ";
 	while (flags[i])
 	{
 		if (c == flags[i])

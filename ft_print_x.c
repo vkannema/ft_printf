@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 17:15:56 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/05 09:05:55 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/06 14:43:52 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ int	ft_print_x(va_list ap, t_env *env)
 	int			ret;
 	unsigned int	nb;
 
+
 	ret = 0;
 	nb = va_arg(ap, unsigned int);
-/*	if (hashtag_flag(env) == 1)
+/*	if (neg_flag(env) == 1)
+		return (print_width_x_minus(nb, env));
+*/	if (hashtag_flag(env) == 1)
 		ret += ft_putstr("0x");
-
-*/
 	if (env->precision == -1)
 	{
 		ret += ft_get_size_hexa(nb, 0);

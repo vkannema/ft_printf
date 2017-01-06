@@ -6,7 +6,7 @@
 #    By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/21 21:10:13 by vkannema          #+#    #+#              #
-#    Updated: 2017/01/05 11:33:47 by vkannema         ###   ########.fr        #
+#    Updated: 2017/01/06 13:56:28 by vkannema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRC = ft_putchar.c \
 	ft_putnbr.c \
 	print_precision.c \
 	width.c \
-	ft_memdel.c
+	ft_memdel.c \
+	print_width_minus.c
 
 
 OBJ = $(SRC:.c=.o)
@@ -50,6 +51,7 @@ $(NAME) :
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "libftprintf done"
+	gcc main.c libftprintf.a
 
 clean :
 	@rm -f $(OBJ)

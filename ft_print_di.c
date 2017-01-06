@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 18:01:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/06 11:05:12 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/06 14:49:58 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	ft_print_di(va_list ap, t_env *env)
 
 	ret = 0;
 	nb = va_arg(ap, int);
+	if (neg_flag(env) == 1)
+		return (print_width_di_minus(nb, env));
 	if (env->width != -1 && env->width > env->precision)
 		ret = print_width(nb, env);
 	if (env->precision == -1)

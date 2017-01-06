@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 17:04:51 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/05 09:27:26 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/06 14:49:59 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ int	ft_print_o(va_list ap, t_env *env)
 
 	ret = 0;
 	nb = va_arg(ap, unsigned int);
-/*	if (hashtag_flag(env) == 1)
+	if (neg_flag(env) == 1)
+		return (print_width_o_minus(nb, env));
+	if (hashtag_flag(env) == 1)
 		ret += ft_putchar('0');
-*/	if (env->precision == -1)
+	if (env->precision == -1)
 	{
 		ft_putoctal(nb);
 		ret += ft_size_nbr(nb) + 1;
