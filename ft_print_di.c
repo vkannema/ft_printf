@@ -6,12 +6,11 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 18:01:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/05 12:44:56 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/06 11:05:12 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
 
 static int	print_width(int nb, t_env *env)
 {

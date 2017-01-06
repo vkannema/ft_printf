@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/05 11:33:36 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/06 11:08:46 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct		s_flag
 {
 	char			value;
 	int				pos;
-	struct s_flag	*prev;
 	struct s_flag	*next;
 }					t_flag;
 
@@ -33,7 +32,6 @@ typedef struct		s_flag_list
 {
 	int				nb;
 	t_flag			*first;
-	t_flag			*last;
 }					t_flag_list;
 
 typedef	struct		s_env

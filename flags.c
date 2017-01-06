@@ -6,11 +6,23 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 10:59:09 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 10:21:18 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/06 12:51:02 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+t_flag	*ft_lstadd(t_flag **alst, t_flag *new)
+{
+	if (*alst)
+	{
+		new->next = *alst;
+		*alst = new;
+	}
+	if (!(*alst))
+		*alst = new;
+	return (*alst);
+}
 
 void	add_flag(t_env *env, char value, int pos)
 {
@@ -19,18 +31,7 @@ void	add_flag(t_env *env, char value, int pos)
 	new_flag = (t_flag *)malloc(sizeof(t_flag));
 	new_flag->value = value;
 	new_flag->pos = pos;
-	if (env->flags->last == NULL)
-	{
-		new_flag->next = NULL;
-		env->flags->last = new_flag;
-		env->flags->first = new_flag;
-	}
-	else
-	{
-		env->flags->first->prev = new_flag;
-		new_flag->next = env->flags->first;
-		env->flags->first = new_flag;
-	}
+	env->flags->first = ft_lstadd(&new_flag, new_flag);
 	env->flags->nb++;
 }
 

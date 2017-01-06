@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 15:44:55 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/05 11:52:29 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/06 12:36:23 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 t_env	*init_env(void)
 {
 	t_env	*env;
+	t_flag_list *flag;
 
+	flag = (t_flag_list *)malloc(sizeof(t_flag_list));
 	env = (t_env *)malloc(sizeof(t_env));
 	env->i = 0;
 	env->size = 0;
@@ -26,6 +28,7 @@ t_env	*init_env(void)
 	env->precision = -1;
 	env->width = -1;
 	env->zero_width = 0;
+	flag->nb = 0;
 	return (env);
 }
 
@@ -45,9 +48,9 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[env->i] == '%' && env->conv == 0)
 			init_conv(env);
-/*		else if (env->conv == 1 && check_flag(format[env->i]) != 0)
+		else if (env->conv == 1 && check_flag(format[env->i]) != 0)
 			add_flag(env, format[env->i], env->i);
-*/		else if (ft_isdigit(format[env->i]) && env->conv == 1)
+		else if (ft_isdigit(format[env->i]) && env->conv == 1)
 			env->i = get_width(format, env->i, env);
 		else if (format[env->i] == '.' && env->conv == 1
 			&& format[env->i + 1] != '*')
