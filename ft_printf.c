@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 15:44:55 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/06 14:50:00 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/07 10:00:24 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_env	*init_env(void)
 
 	env = (t_env *)malloc(sizeof(t_env));
 	env->flags = (t_flag_list *)malloc(sizeof(t_flag_list));
+	env->flags->nb = 0;
+	env->flags->first = NULL;
 	env->i = 0;
 	env->size = 0;
 	env->flag = 0;
@@ -28,7 +30,7 @@ t_env	*init_env(void)
 	env->width = -1;
 	env->zero_width = 0;
 	env->flags->nb = 0;
-	
+
 	return (env);
 }
 

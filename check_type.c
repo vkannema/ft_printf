@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 11:12:12 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 16:19:02 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/07 10:41:14 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int	check_type(char c, t_env *env)
 		}
 		i++;
 	}
+	env->conv = 0;
 	return (0);
 }

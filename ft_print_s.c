@@ -6,13 +6,13 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 20:34:30 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/06 14:49:54 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/07 09:04:17 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int	print_width(char *str, t_env *env)
+int	print_width_str(char *str, t_env *env)
 {
 	int	size;
 	int width;
@@ -51,16 +51,20 @@ int	ft_print_s(va_list ap, t_env *env)
 	char	*str;
 
 	str = va_arg(ap, char *);
-	if (neg_flag(env) == 1)
-		return (print_width_s_minus(str, env));
 	ret = 0;
-	if (!(str))
+	if (neg_flag(env) == 1 && env->precision == -1)
 	{
-		ret += ft_putstr("(null)");
+		env->size += ft_putstr(str);
+		print_width_str(str, env);
 		return (ret);
 	}
-	if (env->width != -1)
-		ret = print_width(str, env);
+	if (!(str))
+	{
+		env->size += ft_putstr("(null)");
+		return (ret);
+	}
+	if (env->width != -1 && env->precision == -1)
+		ret = print_width_str(str, env);
 	if (env->precision == -1)
 	{
 		ret = ft_putstr(str);
