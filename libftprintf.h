@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/07 10:30:29 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/07 11:45:56 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ typedef	struct		s_env
 	int				size;
 	int				flag;
 	int				type;
-	char			conv;
+	int				conv;
 	int				precision;
 	int				width;
 	int				zero_width;
+	char			modif;
+	int				dual;
 	t_flag_list		*flags;
 }					t_env;
 
@@ -106,5 +108,11 @@ int					space_flag(t_env *env);
 int					pos_flag(t_env *env);
 int					neg_flag(t_env *env);
 int					hashtag_flag(t_env *env);
+
+/*
+MODIF
+*/
+int					ft_check_modif(char c);
+int					get_modif(const char *format, int i, t_env *env);
 
 #endif

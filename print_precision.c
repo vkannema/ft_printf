@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 14:10:14 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/07 09:14:30 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/07 12:29:31 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,12 @@ int	print_precision_di(int nb, t_env *env)
 	precision = env->precision;
 	size = ft_size_nbr(nb);
 	ret += size;
+	if (nb < 0)
+	{
+			ft_putchar('-');
+			nb = -nb;
+			precision++;
+	}
 	while (size < precision)
 	{
 		ft_putchar('0');
