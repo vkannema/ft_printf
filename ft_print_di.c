@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 18:01:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/07 12:50:26 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/09 14:06:32 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static int	print_width(int nb, t_env *env)
 	size = ft_size_nbr(nb) + space_flag(env) + pos_flag(env);
 	width = 0;
 	i = 1;
-	if (env->width > size && env->zero_width == 0)
+	if ((env->zero_width == 0)
+		|| (env->zero_width == 1 && neg_flag(env) == 1))
 	{
 		width = env->width - size;
 		while (width >= i)
@@ -29,8 +30,23 @@ static int	print_width(int nb, t_env *env)
 			env->size += ft_putchar(' ');
 			i++;
 		}
+		if (neg_flag(env) != 1)
+			ft_putnbr(nb);
 	}
-	else if (env->width > size && env->zero_width == 1)
+	else if (env->zero_width == 1 && nb < 0)
+	{
+		env->size += ft_putchar('-');
+		width = env->width - size;
+		while (width >= i)
+		{
+			env->size += ft_putchar('0');
+			i++;
+		}
+		nb = -nb;
+		ft_putnbr(nb);
+		env->size--;
+	}
+	else if (env->zero_width == 1)
 	{
 		width = env->width - size;
 		while (width >= i)
@@ -38,18 +54,11 @@ static int	print_width(int nb, t_env *env)
 			env->size += ft_putchar('0');
 			i++;
 		}
+		ft_putnbr(nb);
 	}
 	return (width);
 }
 
-int	printf_width_sup(int nb, t_env *env)
-{
-	int	i;
-	int	width;
-
-	width = env->width - env->precision;
-	if (env->zero_width)
-}
 int	ft_print_di(va_list ap, t_env *env)
 {
 	int	ret;
@@ -76,17 +85,19 @@ int	ft_print_di(va_list ap, t_env *env)
 	}
 	if (nb < 0 && space_flag(env) == 1)
 		nb = -nb;
-	if (env->width != -1 && env->width < env->precision)
-		ret = print_width(nb, env);
-	if (env->width != -1 && env->width > env->precision)
-		ret = print_width_sup(nb, env);
-	if (env->precision == -1)
+	if (env->width == -1 && env->precision == -1)
 	{
 		ft_putnbr(nb);
-		ret = ft_size_nbr(nb);
-		env->size += ret;
-		return (ret);
+		env->size += ft_size_nbr(nb);
 	}
-	env->size += print_precision_di(nb, env);
+	else if (env->width != -1 && env->precision == -1)
+	{
+		ret = print_width(nb, env);
+		env->size += ft_size_nbr(nb);
+	}
+	else if (env->width == -1 && env->precision != -1)
+		env->size += print_precision_di(nb, env);
+	else if (env->width != -1 && env->precision != -1)
+			print_preciwidth_di(nb, env);
 	return (ret);
 }

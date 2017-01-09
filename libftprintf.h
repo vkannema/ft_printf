@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/07 11:45:56 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/09 12:09:02 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int					print_precision_s(char *str, t_env *env);
 int					print_precision_x(unsigned int nb, t_env *env);
 int					print_precision_o(unsigned int nb, t_env *env);
 int					print_width_str(char *str, t_env *env);
+int					print_preciwidth_di(int nb, t_env *env);
 /*
 FLAGS
 */

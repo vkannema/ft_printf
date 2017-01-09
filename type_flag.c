@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 08:26:28 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/07 10:13:50 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/09 10:05:36 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,22 @@ int	space_flag(t_env *env)
 	while (tmp)
 	{
 		if (tmp->value == ' ')
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	zero_flag(t_env *env)
+{
+	t_flag *tmp;
+
+	if (env->flags->nb == 0)
+		return (0);
+	tmp = env->flags->first;
+	while (tmp)
+	{
+		if (tmp->value == '0')
 			return (1);
 		tmp = tmp->next;
 	}
