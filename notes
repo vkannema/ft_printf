@@ -4,3 +4,31 @@ lldb -> r => montre ton segfault en detail
 	 -> p => pk ca segfault
 gcc -g => compilateur garde code source
 gcc -fsanitize=adress => segfault nazi
+
+static int	print_width_precision(int nb, t_env *env)
+{
+	int	i;
+	int	white;
+	int	size;
+
+	white = env->width - env->precision;
+	i = 0;
+	if (nb < 0)
+		i++;
+	while (i < white)
+	{
+		env->size += ft_putchar(' ');
+		i++;
+	}
+	if (ft_size_nbr(nb) > env->precision)
+	{
+		size = ft_size_nbr(nb);
+		while (size > env->precision)
+		{
+			env->size += ft_putchar('0');
+			size++
+		}
+	}
+
+	return (i);
+}

@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/09 12:09:02 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/10 10:53:37 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void				ft_puthexa(unsigned int nb);
 int					ft_get_size_hexa(unsigned int nb, int i);
 int					ft_size_oct(unsigned int nb, int i);
 void				ft_memdel(void **ap);
-
+void				ft_putabs(int n);
 
 int					ft_printf(const char *format, ...);
 int					check_type(char c, t_env *env);
@@ -74,6 +74,7 @@ void				print_arg(va_list ap, t_env *env, char type);
 int					get_width(const char *format, int i, t_env *env);
 int					get_precision(const char *format, int i, t_env *env);
 int					get_precision_star(t_env *env, va_list ap);
+int					ft_size_abs(int n);
 /*
 Print types
 */

@@ -6,51 +6,73 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 12:08:31 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/09 16:32:00 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/10 11:22:16 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int	print_width_precision(int nb, t_env *env)
+int			get_space(t_env *env, int nb, int zero)
+{
+	int	space;
+
+	space = 0;
+	if (env->precision == 0 && nb == 0)
+		space = env->width;
+	else if (zero != 0 && nb >= 0)
+		space = env->width - zero - ft_size_abs(nb);
+	else if (zero != 0 && nb < 0)
+		space = env->width - zero - ft_size_nbr(nb);
+	else if (zero == 0 && nb >= 0)
+		space = env->width - ft_size_abs(nb);
+	else if (zero == 0 && nb < 0)
+		space = env->width - ft_size_nbr(nb);
+	return (space);
+
+}
+void		ft_print(int space, int zero, int nb, t_env *env)
 {
 	int	i;
-	int	white;
-	int	size;
-	int check;
+	int	neg;
 
-	check = 0;
-	size = ft_size_nbr(nb);
-	if (env->precision < size)
-		white = env->width - size;
-	else
-		white = env->width - env->precision;
 	i = 0;
+	neg = 0;
 	if (nb < 0)
-	{
-		i++;
-		white++;
-	}
-	while (i < white)
+		neg = 1;
+	while (i < space)
 	{
 		env->size += ft_putchar(' ');
 		i++;
 	}
+	i = 0;
+	if (neg == 1)
+		ft_putchar('-');
+	while (i < zero)
+	{
+		env->size += ft_putchar('0');
+		i++;
+	}
+}
+
+static int	print_width_precision(int nb, t_env *env)
+{
+	int	space;
+	int	zero;
+	int	size;
+
+	zero = 0;
+	size = ft_size_abs(nb);
+	if (env->precision > size)
+		zero = env->precision - size;
+	space = get_space(env, nb, zero);
+	ft_print(space, zero, nb, env);
+	if (env->precision == 0 && nb == 0)
+		return (0);
+	env->size += ft_size_nbr(nb);
 	if (nb < 0)
-	{
-		env->size += ft_putchar('-');
-		check = 1;
-	}
-	if (size < env->precision)
-	{
-		i = env->precision - size + check;
-		while (i <= env->precision)
-		{
-			env->size += ft_putchar('0');
-			i++;
-		}
-	}
-	return (i);
+		nb = -nb;
+	ft_putnbr(nb);
+	return (0);
 }
 
 
@@ -65,12 +87,7 @@ int	print_preciwidth_di(int nb, t_env *env)
 	j = 0;
 	size = ft_size_nbr(nb);
 	if (env->width > env->precision)
-	{
 		print_width_precision(nb, env);
-		if (nb < 0)
-			nb = -nb;
-		ft_putnbr(nb);
-	}
 	else
 	{
 		if (nb < 0)
@@ -90,7 +107,7 @@ int	print_preciwidth_di(int nb, t_env *env)
 		if (nb < 0)
 			nb = -nb;
 		ft_putnbr(nb);
+		env->size += ft_size_nbr(nb);
 	}
-	env->size += ft_size_nbr(nb);
 	return (size);
 }
