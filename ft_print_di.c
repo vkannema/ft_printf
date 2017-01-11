@@ -6,13 +6,13 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 18:01:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/11 11:23:24 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/11 12:15:13 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int	print_width(int nb, t_env *env)
+static int	print_width(long long nb, t_env *env)
 {
 	int	size;
 	int width;
@@ -62,11 +62,10 @@ static int	print_width(int nb, t_env *env)
 int	ft_print_di(va_list ap, t_env *env)
 {
 	int	ret;
-	intmax_t	nb;
+	long long	nb;
 
 	ret = 0;
 	nb = convert(ap, env);
-	printf("nb %jd\n", nb);
 	if (neg_flag(env) == 1)
 	{
 		ft_putnbr(nb);

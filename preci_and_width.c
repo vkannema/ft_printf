@@ -6,13 +6,13 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 12:08:31 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/10 11:22:16 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/11 12:16:56 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int			get_space(t_env *env, int nb, int zero)
+int			get_space(t_env *env, long long nb, int zero)
 {
 	int	space;
 
@@ -30,7 +30,7 @@ int			get_space(t_env *env, int nb, int zero)
 	return (space);
 
 }
-void		ft_print(int space, int zero, int nb, t_env *env)
+void		ft_print(int space, int zero, long long nb, t_env *env)
 {
 	int	i;
 	int	neg;
@@ -77,7 +77,7 @@ static int	print_width_precision(int nb, t_env *env)
 
 
 
-int	print_preciwidth_di(int nb, t_env *env)
+int	print_preciwidth_di(long long nb, t_env *env)
 {
 	int	i;
 	int	size;

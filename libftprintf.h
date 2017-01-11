@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/11 11:22:24 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/11 12:23:02 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ int					ft_strlen(char *str);
 int					ft_putchar(char c);
 int					ft_putstr(const char *s);
 void				ft_putoctal(unsigned int nb);
-int					ft_size_nbr(int n);
+int					ft_size_nbr(long long n);
 int					ft_atoi(const char *str);
-void				ft_putnbr(int n);
+void				ft_putnbr(long long n);
 void				ft_puthexa(unsigned int nb);
 int					ft_get_size_hexa(unsigned int nb, int i);
-int					ft_size_oct(unsigned int nb, int i);
+int					ft_size_oct(unsigned long long nb, int i);
 void				ft_memdel(void **ap);
-void				ft_putabs(int n);
+void				ft_putabs(long long n);
 
 int					ft_printf(const char *format, ...);
 int					check_type(char c, t_env *env);
@@ -74,7 +74,7 @@ void				print_arg(va_list ap, t_env *env, char type);
 int					get_width(const char *format, int i, t_env *env);
 int					get_precision(const char *format, int i, t_env *env);
 int					get_precision_star(t_env *env, va_list ap);
-int					ft_size_abs(int n);
+int					ft_size_abs(long long n);
 /*
 Print types
 */
@@ -93,12 +93,12 @@ int					ft_print_pe(va_list ap, t_env *env);
 Precision
 */
 
-int					print_precision_di(int nb, t_env *env);
+int					print_precision_di(long long nb, t_env *env);
 int					print_precision_s(char *str, t_env *env);
 int					print_precision_x(unsigned int nb, t_env *env);
 int					print_precision_o(unsigned int nb, t_env *env);
 int					print_width_str(char *str, t_env *env);
-int					print_preciwidth_di(int nb, t_env *env);
+int					print_preciwidth_di(long long nb, t_env *env);
 /*
 FLAGS
 */

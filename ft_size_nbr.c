@@ -6,13 +6,13 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 14:47:24 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/10 10:54:44 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/11 12:23:26 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_size_oct(unsigned int nb, int i)
+int	ft_size_oct(unsigned long long nb, int i)
 {
 	{
 		size_t	beg;
@@ -31,9 +31,9 @@ int	ft_size_oct(unsigned int nb, int i)
 	}
 }
 
-int	ft_size_nbr(int n)
+int	ft_size_nbr(long long n)
 {
-	unsigned int	ind;
+	long long	ind;
 	int				size;
 
 	size = 0;
@@ -56,9 +56,9 @@ int	ft_size_nbr(int n)
 	return (size);
 }
 
-int		ft_size_abs(int n)
+int		ft_size_abs(long long n)
 {
-	unsigned int	ind;
+	long long	ind;
 	int				size;
 
 	size = 0;

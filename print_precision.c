@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 14:10:14 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/09 12:10:10 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/11 12:17:46 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	print_precision_s(char *str, t_env *env)
 	return (i);
 }
 
-int	print_precision_di(int nb, t_env *env)
+int	print_precision_di(long long nb, t_env *env)
 {
 	int	size;
 	int	precision;

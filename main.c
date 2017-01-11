@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 13:20:34 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/11 11:22:53 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/11 12:21:58 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@
 int	main()
 {
 	setlocale(LC_ALL, "");
-	const char *format;
-	int			a;
-	int			*b;
+	long long c;
+	int	size;
 
-	a = 10;
-	b = &a;
-	format = "cou.234 c 42";
-	printf("%d\n\n", printf("%lld\n", -45));
-	ft_printf("%d\n\n", ft_printf("%lld\n", -45));
+	c = 9223372036854775807;
+	printf("%d\n\n", printf("%lld\n", c));
+	ft_putnbr(c);
+	size = ft_size_nbr(c);
+	ft_putchar('\n');
+	ft_putnbr(size);
+//	ft_printf("%d\n\n", ft_printf("%lld\n", c));
 //	printf("%d\n\n", printf("%d\n", 1));
 	return (0);
 }
