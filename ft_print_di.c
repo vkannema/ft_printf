@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 18:01:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/09 14:06:32 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/11 11:23:24 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ static int	print_width(int nb, t_env *env)
 int	ft_print_di(va_list ap, t_env *env)
 {
 	int	ret;
-	int	nb;
+	intmax_t	nb;
 
 	ret = 0;
-	nb = va_arg(ap, int);
-
+	nb = convert(ap, env);
+	printf("nb %jd\n", nb);
 	if (neg_flag(env) == 1)
 	{
 		ft_putnbr(nb);

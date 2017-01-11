@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/10 10:53:37 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/11 11:22:24 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,6 @@ MODIF
 */
 int					ft_check_modif(char c);
 int					get_modif(const char *format, int i, t_env *env);
+intmax_t					convert(va_list ap, t_env *env);
 
 #endif

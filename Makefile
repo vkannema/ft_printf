@@ -6,7 +6,7 @@
 #    By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/21 21:10:13 by vkannema          #+#    #+#              #
-#    Updated: 2017/01/09 12:09:08 by vkannema         ###   ########.fr        #
+#    Updated: 2017/01/11 10:20:08 by vkannema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRC = ft_putchar.c \
 	width.c \
 	ft_memdel.c \
 	modif.c \
-	preci_and_width.c
+	preci_and_width.c \
+	convert.c
 
 
 OBJ = $(SRC:.c=.o)
