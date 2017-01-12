@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 18:01:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/11 12:15:13 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/12 18:23:23 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static int	print_width(long long nb, t_env *env)
 	int width;
 	int	i;
 
-	size = ft_size_nbr(nb) + space_flag(env) + pos_flag(env);
+
+	size = ft_size_nbr(nb) + space_flag(env);
 	width = 0;
 	i = 1;
-	if ((env->zero_width == 0)
-		|| (env->zero_width == 1 && neg_flag(env) == 1))
+	if (zero_flag(env) == 0 || (zero_flag(env) == 1 && neg_flag(env) == 1))
 	{
 		width = env->width - size;
 		while (width >= i)
@@ -33,7 +33,7 @@ static int	print_width(long long nb, t_env *env)
 		if (neg_flag(env) != 1)
 			ft_putnbr(nb);
 	}
-	else if (env->zero_width == 1 && nb < 0)
+	else if (zero_flag(env) == 1 && nb < 0 && neg_flag(env) != 1)
 	{
 		env->size += ft_putchar('-');
 		width = env->width - size;
@@ -46,9 +46,9 @@ static int	print_width(long long nb, t_env *env)
 		ft_putnbr(nb);
 		env->size--;
 	}
-	else if (env->zero_width == 1)
+	else if (zero_flag(env) == 1 && neg_flag(env) != 1)
 	{
-		width = env->width - size;
+		width = env->width - size - pos_flag(env);
 		while (width >= i)
 		{
 			env->size += ft_putchar('0');
@@ -68,12 +68,11 @@ int	ft_print_di(va_list ap, t_env *env)
 	nb = convert(ap, env);
 	if (neg_flag(env) == 1)
 	{
-		ft_putnbr(nb);
+		env->size += print_precision_di(nb, env);
 		print_width(nb, env);
-		env->size += ft_size_nbr(nb);
 		return (ret);
 	}
-	if (pos_flag(env) == 1 && nb >= 0)
+	if (pos_flag(env) == 1 && nb >= 0 && env->precision == -1)
 		env->size += ft_putchar('+');
 	if (space_flag(env) == 1)
 	{

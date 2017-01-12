@@ -6,19 +6,33 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 20:58:53 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 11:42:48 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/12 14:38:58 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
+void	print_width(t_env *env)
+{
+	int	i;
+
+	i = 1;
+	while (i < env->width)
+	{
+		env->size += ft_putchar(' ');
+		i++;
+	}
+}
+
 int	ft_print_c(va_list ap, t_env *env)
 {
-	int		ret;
 	char	c;
 
 	c = va_arg(ap, int);
-	ret = ft_putchar(c);
-	env->size += ret;
-	return (ret);
+	if (env->width != -1 && neg_flag(env) != 1)
+		print_width(env);
+	env->size += ft_putchar(c);
+	if (env->width != -1 && neg_flag(env) == 1)
+		print_width(env);
+	return (0);
 }

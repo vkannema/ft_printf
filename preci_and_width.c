@@ -6,13 +6,13 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 12:08:31 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/11 12:16:56 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/12 18:21:47 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int			get_space(t_env *env, long long nb, int zero)
+static int			get_space(t_env *env, long long nb, int zero)
 {
 	int	space;
 
@@ -27,10 +27,13 @@ int			get_space(t_env *env, long long nb, int zero)
 		space = env->width - ft_size_abs(nb);
 	else if (zero == 0 && nb < 0)
 		space = env->width - ft_size_nbr(nb);
+	if (space_flag(env) == 1 || (pos_flag(env) == 1 && nb >= 0))
+		space--;
 	return (space);
 
 }
-void		ft_print(int space, int zero, long long nb, t_env *env)
+
+static void		ft_print(int space, int zero, long long nb, t_env *env)
 {
 	int	i;
 	int	neg;
@@ -45,6 +48,8 @@ void		ft_print(int space, int zero, long long nb, t_env *env)
 		i++;
 	}
 	i = 0;
+	if (pos_flag(env) == 1 && neg == 0) // modifie
+		env->size += ft_putchar('+');
 	if (neg == 1)
 		ft_putchar('-');
 	while (i < zero)

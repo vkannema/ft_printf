@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/11 12:23:02 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:35:04 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void				ft_putoctal(unsigned int nb);
 int					ft_size_nbr(long long n);
 int					ft_atoi(const char *str);
 void				ft_putnbr(long long n);
-void				ft_puthexa(unsigned int nb);
-int					ft_get_size_hexa(unsigned int nb, int i);
-int					ft_size_oct(unsigned long long nb, int i);
+void				ft_puthexa(unsigned long long nb, const char *base);
+void				ft_putunsigned(unsigned long long n);
+int					ft_size_oct(unsigned long long nb);
 void				ft_memdel(void **ap);
 void				ft_putabs(long long n);
 
@@ -75,6 +75,8 @@ int					get_width(const char *format, int i, t_env *env);
 int					get_precision(const char *format, int i, t_env *env);
 int					get_precision_star(t_env *env, va_list ap);
 int					ft_size_abs(long long n);
+int					ft_size_hexa(unsigned long long nb);
+int					ft_size_unsigned(unsigned long long n);
 /*
 Print types
 */
@@ -88,6 +90,7 @@ int					ft_print_di(va_list ap, t_env *env);
 int					ft_print_p(va_list ap, t_env *env);
 int					ft_print_xcap(va_list ap, t_env *env);
 int					ft_print_pe(va_list ap, t_env *env);
+int					ft_print_u(va_list ap, t_env *env);
 
 /*
 Precision
@@ -95,10 +98,11 @@ Precision
 
 int					print_precision_di(long long nb, t_env *env);
 int					print_precision_s(char *str, t_env *env);
-int					print_precision_x(unsigned int nb, t_env *env);
+int					print_precision_x(unsigned long long nb, t_env *env, const char *base);
 int					print_precision_o(unsigned int nb, t_env *env);
 int					print_width_str(char *str, t_env *env);
 int					print_preciwidth_di(long long nb, t_env *env);
+int					print_precision_u(unsigned long long nb, t_env *env);
 /*
 FLAGS
 */
@@ -116,6 +120,7 @@ MODIF
 */
 int					ft_check_modif(char c);
 int					get_modif(const char *format, int i, t_env *env);
-intmax_t					convert(va_list ap, t_env *env);
+intmax_t			convert(va_list ap, t_env *env);
+uintmax_t			convert_u(va_list ap, t_env *env);
 
 #endif
