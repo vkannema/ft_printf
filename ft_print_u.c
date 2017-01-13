@@ -6,13 +6,13 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 11:57:14 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/12 15:47:32 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:51:43 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int	print_width(unsigned long long nb, t_env *env)
+static int		print_width(unsigned long long nb, t_env *env)
 {
 	int	size;
 	int	width;
@@ -33,14 +33,14 @@ static int	print_width(unsigned long long nb, t_env *env)
 	{
 		while (width > i)
 		{
-			env->size+= ft_putchar('0');
+			env->size += ft_putchar('0');
 			i++;
 		}
 	}
 	return (0);
 }
 
-static int			get_space(t_env *env, long long nb, int zero)
+static int		get_space(t_env *env, long long nb, int zero)
 {
 	int	space;
 
@@ -52,7 +52,6 @@ static int			get_space(t_env *env, long long nb, int zero)
 	else if (zero == 0 && nb >= 0)
 		space = env->width - ft_size_unsigned(nb);
 	return (space);
-
 }
 
 static void		ft_print(int space, int zero, t_env *env)
@@ -73,7 +72,7 @@ static void		ft_print(int space, int zero, t_env *env)
 	}
 }
 
-static int	print_width_precision(int nb, t_env *env)
+static int		print_width_precision(int nb, t_env *env)
 {
 	int	space;
 	int	zero;
@@ -93,9 +92,7 @@ static int	print_width_precision(int nb, t_env *env)
 	return (0);
 }
 
-
-
-static int	print_preciwidth_u(unsigned long long nb, t_env *env)
+static int		print_preciwidth_u(unsigned long long nb, t_env *env)
 {
 	int	i;
 	int	size;
@@ -124,9 +121,9 @@ static int	print_preciwidth_u(unsigned long long nb, t_env *env)
 	return (size);
 }
 
-int	ft_print_u(va_list ap, t_env *env)
+int				ft_print_u(va_list ap, t_env *env)
 {
-	int	ret;
+	int					ret;
 	unsigned long long	nb;
 
 	ret = 0;
@@ -152,6 +149,6 @@ int	ft_print_u(va_list ap, t_env *env)
 	else if (env->width == -1 && env->precision != -1)
 		env->size += print_precision_u(nb, env);
 	else if (env->width != -1 && env->precision != -1)
-			print_preciwidth_u(nb, env);
+		print_preciwidth_u(nb, env);
 	return (ret);
 }

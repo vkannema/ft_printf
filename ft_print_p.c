@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 21:29:05 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 11:43:07 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:44:53 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static int		ft_size_un(unsigned long int nb)
 
 void			ft_putp(unsigned long int nb)
 {
-	size_t	beg;
-	size_t	end;
+	size_t		beg;
+	size_t		end;
 	const char	*base;
 
 	base = "0123456789abcdef";
@@ -43,7 +43,7 @@ void			ft_putp(unsigned long int nb)
 
 int				ft_print_p(va_list ap, t_env *env)
 {
-	int	ret;
+	int					ret;
 	unsigned long int	nb;
 
 	nb = va_arg(ap, unsigned long int);

@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/10 10:43:43 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/12 18:32:52 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:59:05 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void		ft_putnbr(long long n)
 {
+	if (n < -9223372036854775807)
+	{
+		ft_putstr("-9223372036854775808");
+		return ;
+	}
 	if (n < 0)
 	{
 		n = -n;
@@ -35,7 +40,7 @@ void		ft_putabs(long long n)
 	ft_putnbr(n);
 }
 
-void	ft_puthexa(unsigned long long nb, const char *base)
+void		ft_puthexa(unsigned long long nb, const char *base)
 {
 	size_t beg;
 	size_t end;
@@ -47,12 +52,33 @@ void	ft_puthexa(unsigned long long nb, const char *base)
 	ft_putchar(base[end]);
 }
 
-void	ft_putunsigned(unsigned long long n)
+void		ft_putunsigned(unsigned long long n)
 {
 	if (n > 9)
 	{
 		ft_putunsigned(n / 10);
 		ft_putunsigned(n % 10);
+	}
+	if (n <= 9)
+		ft_putchar(n + '0');
+}
+
+void		ft_putunsigned_cap(unsigned long long n)
+{
+	if (n == 4294967295)
+	{
+		ft_putstr("4294967295");
+		return ;
+	}
+	if (n > 4294967295)
+	{
+		ft_putstr("4294967296");
+		return ;
+	}
+	if (n > 9)
+	{
+		ft_putunsigned_cap(n / 10);
+		ft_putunsigned_cap(n % 10);
 	}
 	if (n <= 9)
 		ft_putchar(n + '0');

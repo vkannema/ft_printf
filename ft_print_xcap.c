@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/28 12:33:04 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/12 11:30:45 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:57:33 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,14 @@ static int	print_width(unsigned long long nb, t_env *env)
 		}
 		while (width > i)
 		{
-			env->size+= ft_putchar('0');
+			env->size += ft_putchar('0');
 			i++;
 		}
 	}
-
 	return (0);
 }
 
-static int			get_space(t_env *env, long long nb, int zero)
+static int	get_space(t_env *env, long long nb, int zero)
 {
 	int	space;
 
@@ -67,10 +66,9 @@ static int			get_space(t_env *env, long long nb, int zero)
 	else if (zero == 0 && nb >= 0)
 		space = env->width - ft_size_hexa(nb);
 	return (space);
-
 }
 
-static void		ft_print(int space, int zero, t_env *env)
+static void	ft_print(int space, int zero, t_env *env)
 {
 	int	i;
 
@@ -108,9 +106,8 @@ static int	print_width_precision(int nb, t_env *env)
 	return (0);
 }
 
-
-
-static int	print_preciwidth_x(unsigned long long nb, t_env *env, const char *base)
+static int	print_preciwidth_x(unsigned long long nb,
+	t_env *env, const char *base)
 {
 	int	i;
 	int	size;
@@ -139,18 +136,17 @@ static int	print_preciwidth_x(unsigned long long nb, t_env *env, const char *bas
 	return (size);
 }
 
-int	ft_print_xcap(va_list ap, t_env *env)
+int			ft_print_xcap(va_list ap, t_env *env)
 {
-	int			ret;
+	int					ret;
 	unsigned long long	nb;
-
 
 	ret = 0;
 	nb = convert_u(ap, env);
 	if (neg_flag(env) == 1)
 	{
 		ft_puthexa(nb, "0123456789ABCDEF");
-		env->size+= ft_size_hexa(nb);
+		env->size += ft_size_hexa(nb);
 		print_width(nb, env);
 		return (ret);
 	}
@@ -161,7 +157,7 @@ int	ft_print_xcap(va_list ap, t_env *env)
 	}
 	if (env->width == -1 && env->precision == -1)
 	{
-		env->size+= ft_size_hexa(nb);
+		env->size += ft_size_hexa(nb);
 		ft_puthexa(nb, "0123456789ABCDEF");
 	}
 	else if (env->precision == -1 && env->width != -1)

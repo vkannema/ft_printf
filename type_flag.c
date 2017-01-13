@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 08:26:28 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/09 10:05:36 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/13 12:04:20 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	hashtag_flag(t_env *env)
 {
 	t_flag	*tmp;
-
 
 	if (env->flags->nb == 0)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 14:47:24 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/12 12:08:58 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/13 12:00:42 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 int	ft_size_oct(unsigned long long nb)
 {
-	{
-		size_t	beg;
-		size_t	end;
-		int		i;
+	size_t	beg;
+	size_t	end;
+	int		i;
 
-		end = nb % 8;
-		beg = (nb - end) / 8;
-		i = 1;
-		while (beg)
-		{
-			end = beg % 8;
-			beg = (beg - end) / 8;
-			i++;
-		}
-		return (i);
+	end = nb % 8;
+	beg = (nb - end) / 8;
+	i = 1;
+	while (beg)
+	{
+		end = beg % 8;
+		beg = (beg - end) / 8;
+		i++;
 	}
+	return (i);
 }
 
 int	ft_size_nbr(long long n)
 {
 	long long	ind;
-	int				size;
+	int			size;
 
 	size = 0;
+	if (n < -9223372036854775807)
+		return (20);
 	if (n >= 0 && n <= 9)
 		return (1);
 	if (n < 0)
@@ -57,9 +57,9 @@ int	ft_size_nbr(long long n)
 	return (size);
 }
 
-int		ft_size_abs(long long n)
+int	ft_size_abs(long long n)
 {
-	long long	ind;
+	long long		ind;
 	int				size;
 
 	size = 0;

@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 15:44:55 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/12 15:52:41 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:58:33 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	init_conv(t_env *env)
 	env->conv = 1;
 }
 
-int	ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
 	t_env		*env;
 	va_list		ap;
@@ -57,7 +57,7 @@ int	ft_printf(const char *format, ...)
 			env->i = get_width(format, env->i, env);
 		else if (format[env->i] == '.' && env->conv == 1
 			&& format[env->i + 1] != '*')
-				env->i = get_precision(format, env->i + 1, env);
+			env->i = get_precision(format, env->i + 1, env);
 		else if (format[env->i] == '.' && env->conv == 1
 			&& format[env->i + 1] == '*')
 			env->i = get_precision_star(env, ap);

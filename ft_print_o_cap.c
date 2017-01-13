@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_o.c                                       :+:      :+:    :+:   */
+/*   ft_print_o_cap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/22 17:04:51 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/13 11:44:27 by vkannema         ###   ########.fr       */
+/*   Created: 2017/01/13 11:20:57 by vkannema          #+#    #+#             */
+/*   Updated: 2017/01/13 11:40:48 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int		print_width_neg(unsigned long long nb, t_env *env)
+static int	print_width_neg(unsigned long long nb, t_env *env)
 {
 	int	size;
 	int	width;
@@ -44,7 +44,7 @@ static int		print_width_neg(unsigned long long nb, t_env *env)
 	return (0);
 }
 
-static int		print_width(unsigned long long nb, t_env *env)
+static int	print_width(unsigned long long nb, t_env *env)
 {
 	int	size;
 	int	width;
@@ -80,7 +80,7 @@ static int		print_width(unsigned long long nb, t_env *env)
 	return (0);
 }
 
-static int		get_space(t_env *env, long long nb, int zero)
+static int	get_space(t_env *env, long long nb, int zero)
 {
 	int	space;
 
@@ -94,7 +94,7 @@ static int		get_space(t_env *env, long long nb, int zero)
 	return (space);
 }
 
-static void		ft_print(int space, int zero, t_env *env)
+static void	ft_print(int space, int zero, t_env *env)
 {
 	int	i;
 
@@ -112,7 +112,7 @@ static void		ft_print(int space, int zero, t_env *env)
 	}
 }
 
-static int		print_width_precision(int nb, t_env *env)
+static int	print_width_precision(int nb, t_env *env)
 {
 	int	space;
 	int	zero;
@@ -132,7 +132,7 @@ static int		print_width_precision(int nb, t_env *env)
 	return (0);
 }
 
-static int		print_preciwidth_o(unsigned long long nb, t_env *env)
+static int	print_preciwidth_o(unsigned long long nb, t_env *env)
 {
 	int	i;
 	int	size;
@@ -161,13 +161,13 @@ static int		print_preciwidth_o(unsigned long long nb, t_env *env)
 	return (size);
 }
 
-int				ft_print_o(va_list ap, t_env *env)
+int			ft_print_o_cap(va_list ap, t_env *env)
 {
 	int					ret;
 	unsigned long long	nb;
 
 	ret = 0;
-	nb = convert_u(ap, env);
+	nb = va_arg(ap, unsigned long);
 	if (neg_flag(env) == 1)
 	{
 		if (hashtag_flag(env) == 1)

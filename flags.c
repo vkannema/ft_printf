@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 10:59:09 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/12 15:41:26 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:29:46 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	add_flag(t_env *env, char value, int pos)
 
 	new_flag = ft_lstnew(value, pos);
 	if (env->flags->first == NULL)
-			env->flags->first = new_flag;
+		env->flags->first = new_flag;
 	else
 	{
 		new_flag->next = env->flags->first;

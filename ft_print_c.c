@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 20:58:53 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/12 14:38:58 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:30:24 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_width(t_env *env)
 	}
 }
 
-int	ft_print_c(va_list ap, t_env *env)
+int		ft_print_c(va_list ap, t_env *env)
 {
 	char	c;
 

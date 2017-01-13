@@ -1,62 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_x.c                                       :+:      :+:    :+:   */
+/*   ft_print_u_cap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/22 17:15:56 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/13 11:54:11 by vkannema         ###   ########.fr       */
+/*   Created: 2017/01/13 10:25:02 by vkannema          #+#    #+#             */
+/*   Updated: 2017/01/13 11:49:06 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-static int	print_width_neg(unsigned long long nb, t_env *env)
-{
-	int	size;
-	int	width;
-	int	i;
-	int	flag;
-
-	i = 0;
-	flag = hashtag_flag(env);
-	size = ft_size_hexa(nb);
-	width = env->width - size;
-	if (flag == 1)
-		width -= 2;
-	if (env->zero_width == 0 || neg_flag(env) == 1)
-	{
-		while (width > i)
-		{
-			env->size += ft_putchar(' ');
-			i++;
-		}
-	}
-	if (env->zero_width == 1)
-	{
-		while (width > i)
-		{
-			env->size += ft_putchar('0');
-			i++;
-		}
-	}
-	return (0);
-}
 
 static int	print_width(unsigned long long nb, t_env *env)
 {
 	int	size;
 	int	width;
 	int	i;
-	int	flag;
 
 	i = 0;
-	flag = hashtag_flag(env);
-	size = ft_size_hexa(nb);
+	size = ft_size_unsigned(nb);
 	width = env->width - size;
-	if (flag == 1)
-		width -= 2;
 	if (zero_flag(env) == 0)
 	{
 		while (width > i)
@@ -64,19 +28,9 @@ static int	print_width(unsigned long long nb, t_env *env)
 			env->size += ft_putchar(' ');
 			i++;
 		}
-		if (hashtag_flag(env) == 1 && nb != 0)
-		{
-			ft_putstr("0x");
-			env->size = env->size + 2;
-		}
 	}
 	if (zero_flag(env) == 1)
 	{
-		if (hashtag_flag(env) == 1 && nb != 0)
-		{
-			ft_putstr("0x");
-			env->size = env->size + 2;
-		}
 		while (width > i)
 		{
 			env->size += ft_putchar('0');
@@ -94,9 +48,9 @@ static int	get_space(t_env *env, long long nb, int zero)
 	if (env->precision == 0 && nb == 0)
 		space = env->width;
 	else if (zero != 0 && nb >= 0)
-		space = env->width - zero - ft_size_hexa(nb);
+		space = env->width - zero - ft_size_unsigned(nb);
 	else if (zero == 0 && nb >= 0)
-		space = env->width - ft_size_hexa(nb);
+		space = env->width - ft_size_unsigned(nb);
 	return (space);
 }
 
@@ -125,21 +79,20 @@ static int	print_width_precision(int nb, t_env *env)
 	int	size;
 
 	zero = 0;
-	size = ft_size_abs(nb);
+	size = ft_size_unsigned(nb);
 	if (env->precision > size)
 		zero = env->precision - size;
 	space = get_space(env, nb, zero);
 	ft_print(space, zero, env);
 	if (env->precision == 0 && nb == 0)
 		return (0);
-	env->size += ft_size_nbr(nb);
+	env->size += ft_size_unsigned(nb);
 	if (nb != 0)
-		ft_puthexa(nb, "0123456789abcdef");
+		ft_putunsigned(nb);
 	return (0);
 }
 
-int			print_preciwidth_x(unsigned long long nb,
-	t_env *env, const char *base)
+static int	print_preciwidth_u(unsigned long long nb, t_env *env)
 {
 	int	i;
 	int	size;
@@ -162,53 +115,36 @@ int			print_preciwidth_x(unsigned long long nb,
 			}
 		}
 		if (nb != 0)
-			ft_puthexa(nb, base);
-		env->size += ft_size_hexa(nb);
+			ft_putunsigned(nb);
+		env->size += ft_size_unsigned(nb);
 	}
 	return (size);
 }
 
-int			ft_print_x(va_list ap, t_env *env)
+int			ft_print_u_cap(va_list ap, t_env *env)
 {
-	int					ret;
 	unsigned long long	nb;
 
-	ret = 0;
-	nb = convert_u(ap, env);
+	nb = va_arg(ap, unsigned long);
 	if (neg_flag(env) == 1)
 	{
-		if (hashtag_flag(env) == 1)
-		{
-			ft_putstr("0x");
-			env->size += 2;
-		}
-		ft_puthexa(nb, "0123456789abcdef");
-		env->size += ft_size_hexa(nb);
-		print_width_neg(nb, env);
-		return (ret);
-	}
-	if (hashtag_flag(env) == 1 && env->width == -1 && nb != 0)
-	{
-		ret += ft_putstr("0x");
-		env->size = env->size + 2;
+		ft_putunsigned_cap(nb);
+		print_width(nb, env);
+		env->size += ft_size_unsigned(nb);
+		return (0);
 	}
 	if (env->width == -1 && env->precision == -1)
 	{
-		env->size += ft_size_hexa(nb);
-		ft_puthexa(nb, "0123456789abcdef");
+		ft_putunsigned_cap(nb);
+		env->size += ft_size_unsigned(nb);
 	}
-	else if (env->precision == -1 && env->width != -1)
+	else if (env->width != -1 && env->precision == -1)
 	{
 		print_width(nb, env);
-		if (nb != 0)
-		{
-			ft_puthexa(nb, "0123456789abcdef");
-			env->size += ft_size_hexa(nb);
-		}
+		env->size += ft_size_unsigned(nb);
+		ft_putunsigned_cap(nb);
 	}
-	else if (env->width == -1 && env->precision != -1)
-		env->size += print_precision_x(nb, env, "0123456789abcdef");
 	else if (env->width != -1 && env->precision != -1)
-		print_preciwidth_x(nb, env, "0123456789abcdef");
-	return (ret);
+		print_preciwidth_u(nb, env);
+	return (0);
 }

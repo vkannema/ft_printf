@@ -6,13 +6,13 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 12:08:31 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/12 18:21:47 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/13 12:02:29 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int			get_space(t_env *env, long long nb, int zero)
+static int		get_space(t_env *env, long long nb, int zero)
 {
 	int	space;
 
@@ -30,7 +30,6 @@ static int			get_space(t_env *env, long long nb, int zero)
 	if (space_flag(env) == 1 || (pos_flag(env) == 1 && nb >= 0))
 		space--;
 	return (space);
-
 }
 
 static void		ft_print(int space, int zero, long long nb, t_env *env)
@@ -48,7 +47,7 @@ static void		ft_print(int space, int zero, long long nb, t_env *env)
 		i++;
 	}
 	i = 0;
-	if (pos_flag(env) == 1 && neg == 0) // modifie
+	if (pos_flag(env) == 1 && neg == 0)
 		env->size += ft_putchar('+');
 	if (neg == 1)
 		ft_putchar('-');
@@ -59,7 +58,7 @@ static void		ft_print(int space, int zero, long long nb, t_env *env)
 	}
 }
 
-static int	print_width_precision(int nb, t_env *env)
+static int		print_width_precision(int nb, t_env *env)
 {
 	int	space;
 	int	zero;
@@ -80,9 +79,7 @@ static int	print_width_precision(int nb, t_env *env)
 	return (0);
 }
 
-
-
-int	print_preciwidth_di(long long nb, t_env *env)
+int				print_preciwidth_di(long long nb, t_env *env)
 {
 	int	i;
 	int	size;
