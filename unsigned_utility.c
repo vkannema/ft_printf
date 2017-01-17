@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   unsigned_utility.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/12 13:20:34 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/17 18:33:07 by vkannema         ###   ########.fr       */
+/*   Created: 2017/01/13 12:35:48 by vkannema          #+#    #+#             */
+/*   Updated: 2017/01/13 12:37:37 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libftprintf.h"
-#include <wchar.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <locale.h>
 
-int	main(void)
+void		ft_print_un(int space, int zero, t_env *env)
 {
 	int	i;
 
-	setlocale(LC_ALL, "");
 	i = 0;
-	printf("%d\n\n", printf("%C\n", 945));
-	ft_printf("%d\n\n", ft_printf("%C\n", 945));
-	while (i < 42)
-		;
-	return (0);
+	while (i < space)
+	{
+		env->size += ft_putchar(' ');
+		i++;
+	}
+	i = 0;
+	while (i < zero)
+	{
+		env->size += ft_putchar('0');
+		i++;
+	}
 }

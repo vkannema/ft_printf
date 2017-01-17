@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 15:44:55 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/13 11:58:33 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/17 15:58:45 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ t_env	*init_env(void)
 {
 	t_env	*env;
 
-	env = (t_env *)malloc(sizeof(t_env));
-	env->flags = (t_flag_list *)malloc(sizeof(t_flag_list));
-	env->flags->nb = 0;
-	env->flags->first = NULL;
+	if (!(env = malloc(sizeof(t_env))))
+		return (NULL);
 	env->i = 0;
 	env->size = 0;
 	env->flag = 0;
@@ -29,40 +27,48 @@ t_env	*init_env(void)
 	env->precision = -1;
 	env->width = -1;
 	env->zero_width = 0;
-	env->flags->nb = 0;
 	env->modif = 0;
 	env->dual = 0;
+	env->flags.zero = 0;
+	env->flags.pos = 0;
+	env->flags.neg = 0;
+	env->flags.space = 0;
+	env->flags.hashtag = 0;
 	return (env);
 }
 
-void	init_conv(t_env *env)
+void	parsing(const char *format, t_env *env, va_list ap)
 {
-	env->conv = 1;
+	if (ft_isdigit(format[env->i]) && env->conv == 1)
+		env->i = get_width(format, env->i, env);
+	else if (format[env->i] == '.' && env->conv == 1
+		&& format[env->i + 1] != '*')
+		env->i = get_precision(format, env->i + 1, env);
+	else if (format[env->i] == '.' && env->conv == 1
+		&& format[env->i + 1] == '*')
+		env->i = get_precision_star(env, ap);
+	else if (ft_check_modif(format[env->i]) == 1 && env->conv == 1)
+		env->i += get_modif(format, env->i, env);
+	return ;
 }
 
 int		ft_printf(const char *format, ...)
 {
 	t_env		*env;
 	va_list		ap;
+	int			ret;
 
 	va_start(ap, format);
 	env = init_env();
 	while (format[env->i])
 	{
 		if (format[env->i] == '%' && env->conv == 0)
-			init_conv(env);
+			env->conv = 1;
 		else if (env->conv == 1 && check_flag(format[env->i]) != 0)
-			add_flag(env, format[env->i], env->i);
-		else if (ft_isdigit(format[env->i]) && env->conv == 1)
-			env->i = get_width(format, env->i, env);
-		else if (format[env->i] == '.' && env->conv == 1
-			&& format[env->i + 1] != '*')
-			env->i = get_precision(format, env->i + 1, env);
-		else if (format[env->i] == '.' && env->conv == 1
-			&& format[env->i + 1] == '*')
-			env->i = get_precision_star(env, ap);
-		else if (ft_check_modif(format[env->i]) == 1 && env->conv == 1)
-			env->i += get_modif(format, env->i, env);
+			add_flag(env, format[env->i]);
+		else if (env->conv == 1 && ((ft_check_modif(format[env->i]) == 1)
+		|| (format[env->i] == '.' || (ft_isdigit(format[env->i])))))
+			parsing(format, env, ap);
 		else if (env->conv == 1 && check_type(format[env->i], env) != 0)
 			print_arg(ap, env, format[env->i]);
 		else
@@ -70,5 +76,7 @@ int		ft_printf(const char *format, ...)
 		env->i++;
 	}
 	va_end(ap);
-	return (env->size);
+	ret = env->size;
+	ft_memdel((void *)&env);
+	return (ret);
 }

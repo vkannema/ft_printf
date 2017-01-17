@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/28 12:41:38 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/13 11:46:45 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/17 14:48:39 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			ft_print_pe(va_list ap, t_env *env)
 	(void)ap;
 	if (env->precision == -1 && env->width == -1)
 		env->size += ft_putchar('%');
-	else if (neg_flag(env) != 1)
+	else if (env->flags.neg != 1)
 	{
 		print_width(env);
 		env->size += ft_putchar('%');

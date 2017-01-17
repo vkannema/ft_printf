@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/28 12:33:04 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/13 11:57:33 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/17 18:51:59 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,76 +14,26 @@
 
 static int	print_width(unsigned long long nb, t_env *env)
 {
-	int	size;
 	int	width;
 	int	i;
-	int	flag;
 
 	i = 0;
-	flag = hashtag_flag(env);
-	size = ft_size_hexa(nb);
-	width = env->width - size;
-	if (flag == 1)
+	width = env->width - ft_size_hexa(nb);
+	if (env->flags.hashtag == 1)
 		width -= 2;
-	if (env->zero_width == 0)
+	if (env->flags.hashtag == 1 && nb != 0)
+		env->size += ft_putstr("0X");
+	while (width > i)
 	{
-		while (width > i)
-		{
+		if (env->zero_width == 0)
 			env->size += ft_putchar(' ');
-			i++;
-		}
-		if (hashtag_flag(env) == 1 && nb != 0)
-		{
-			ft_putstr("0X");
-			env->size = env->size + 2;
-		}
-	}
-	if (env->zero_width == 1)
-	{
-		if (hashtag_flag(env) == 1 && nb != 0)
-		{
-			ft_putstr("0X");
-			env->size = env->size + 2;
-		}
-		while (width > i)
-		{
+		if (env->zero_width == 1)
 			env->size += ft_putchar('0');
-			i++;
-		}
+		i++;
 	}
+	if (env->flags.hashtag == 1 && nb != 0)
+		env->size += ft_putstr("0X");
 	return (0);
-}
-
-static int	get_space(t_env *env, long long nb, int zero)
-{
-	int	space;
-
-	space = 0;
-	if (env->precision == 0 && nb == 0)
-		space = env->width;
-	else if (zero != 0 && nb >= 0)
-		space = env->width - zero - ft_size_hexa(nb);
-	else if (zero == 0 && nb >= 0)
-		space = env->width - ft_size_hexa(nb);
-	return (space);
-}
-
-static void	ft_print(int space, int zero, t_env *env)
-{
-	int	i;
-
-	i = 0;
-	while (i < space)
-	{
-		env->size += ft_putchar(' ');
-		i++;
-	}
-	i = 0;
-	while (i < zero)
-	{
-		env->size += ft_putchar('0');
-		i++;
-	}
 }
 
 static int	print_width_precision(int nb, t_env *env)
@@ -96,8 +46,15 @@ static int	print_width_precision(int nb, t_env *env)
 	size = ft_size_abs(nb);
 	if (env->precision > size)
 		zero = env->precision - size;
-	space = get_space(env, nb, zero);
-	ft_print(space, zero, env);
+	if (env->precision == 0 && nb == 0)
+		space = env->width;
+	else if (zero != 0 && nb >= 0)
+		space = env->width - zero - ft_size_hexa(nb);
+	else if (zero == 0 && nb >= 0)
+		space = env->width - ft_size_hexa(nb);
+	else
+		space = 0;
+	ft_print_un(space, zero, env);
 	if (env->precision == 0 && nb == 0)
 		return (0);
 	env->size += ft_size_nbr(nb);
@@ -143,14 +100,14 @@ int			ft_print_xcap(va_list ap, t_env *env)
 
 	ret = 0;
 	nb = convert_u(ap, env);
-	if (neg_flag(env) == 1)
+	if (env->flags.neg == 1)
 	{
 		ft_puthexa(nb, "0123456789ABCDEF");
 		env->size += ft_size_hexa(nb);
 		print_width(nb, env);
 		return (ret);
 	}
-	if (hashtag_flag(env) == 1 && env->width == -1 && nb != 0)
+	if (env->flags.hashtag == 1 && env->width == -1 && nb != 0)
 	{
 		ret += ft_putstr("0X");
 		env->size = env->size + 2;

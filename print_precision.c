@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 14:10:14 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/13 12:03:55 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/17 17:37:47 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	print_precision_o(unsigned int nb, t_env *env)
 	int	precision;
 	int	ret;
 
-	if (nb == 0 && hashtag_flag(env) != 1)
+	if (nb == 0 && env->flags.hashtag != 1)
 		return (0);
 	ret = 0;
 	precision = env->precision;
@@ -60,32 +60,18 @@ int	print_precision_x(unsigned long long nb, t_env *env, const char *base)
 
 int	print_precision_s(char *str, t_env *env)
 {
-	int	precision;
-	int	ret;
 	int	i;
 	int	size;
 
-	ret = 0;
 	i = 0;
 	size = ft_strlen(str);
-	precision = env->precision;
-	ret += size;
-	if (str[0] == '\0' && env->width != -1)
-	{
-		while (i < env->width)
-		{
-			ft_putchar(' ');
-			i++;
-		}
-		return (env->width);
-	}
-	if (env->width != -1 && neg_flag(env) == 0)
+	if ((env->width != -1 && env->flags.neg == 0))
 		print_width_str(str, env);
-	if (size > precision)
+	if (size > env->precision)
 	{
-		while (i != precision)
+		while (i != env->precision)
 		{
-			ret += ft_putchar(str[i]);
+			ft_putchar(str[i]);
 			i++;
 		}
 	}
@@ -94,7 +80,7 @@ int	print_precision_s(char *str, t_env *env)
 		ft_putstr(str);
 		return (size);
 	}
-	if (neg_flag(env) == 1)
+	if (env->flags.neg == 1)
 		print_width_str(str, env);
 	return (i);
 }
@@ -124,34 +110,28 @@ int	print_precision_u(unsigned long long nb, t_env *env)
 int	print_precision_di(long long nb, t_env *env)
 {
 	int	size;
-	int	precision;
 	int ret;
 
 	ret = 0;
-	precision = env->precision;
-	if (pos_flag(env) == 1 && nb > 0)
+	if (env->flags.pos == 1 && nb > 0)
 	{
 		env->size += ft_putchar('+');
 		env->width--;
 	}
-	if (nb == 0 && precision == 0)
-		return (ret);
 	size = ft_size_nbr(nb);
-	ret += size;
 	if (nb < 0)
 		ft_putchar('-');
 	if (nb < 0)
 	{
 		nb = -nb;
-		precision++;
+		env->precision++;
 	}
-	while (size < precision)
+	while (size < env->precision)
 	{
 		ft_putchar('0');
 		size++;
-		ret++;
-		env->width--;
 	}
+	ret += size;
 	ft_putnbr(nb);
 	return (ret);
 }

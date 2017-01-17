@@ -6,113 +6,61 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 11:20:57 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/13 11:40:48 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/17 18:59:02 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int	print_width_neg(unsigned long long nb, t_env *env)
+static int		print_width_neg(unsigned long long nb, t_env *env)
 {
 	int	size;
 	int	width;
 	int	i;
-	int	flag;
 
 	i = 0;
-	flag = hashtag_flag(env);
 	size = ft_size_oct(nb);
 	width = env->width - size;
-	if (flag == 1)
+	if (env->flags.hashtag == 1)
 		width--;
-	if (env->zero_width == 0 || neg_flag(env) == 1)
+	while (width > i)
 	{
-		while (width > i)
-		{
+		if (env->flags.neg == 1 || env->zero_width == 0)
 			env->size += ft_putchar(' ');
-			i++;
-		}
-	}
-	if (env->zero_width == 1)
-	{
-		while (width > i)
-		{
+		if (env->flags.neg == 0 && env->zero_width == 1)
 			env->size += ft_putchar('0');
-			i++;
-		}
+		i++;
 	}
 	return (0);
 }
 
-static int	print_width(unsigned long long nb, t_env *env)
+static int		print_width(unsigned long long nb, t_env *env)
 {
 	int	size;
 	int	width;
 	int	i;
-	int	flag;
 
 	i = 0;
-	flag = hashtag_flag(env);
 	size = ft_size_hexa(nb);
 	width = env->width - size;
-	if (flag == 1)
+	if (env->flags.hashtag == 1)
 		width -= 2;
-	if (zero_flag(env) == 0)
+	if (env->flags.hashtag == 1 && nb != 0 && env->flags.zero == 1)
+		env->size += ft_putchar('0');
+	while (width > i)
 	{
-		while (width > i)
-		{
+		if (env->flags.zero == 0)
 			env->size += ft_putchar(' ');
-			i++;
-		}
-		if (hashtag_flag(env) == 1 && nb != 0)
+		if (env->flags.zero == 1)
 			env->size += ft_putchar('0');
+		i++;
 	}
-	if (zero_flag(env) == 1)
-	{
-		if (hashtag_flag(env) == 1 && nb != 0)
-			env->size += ft_putchar('0');
-		while (width > i)
-		{
-			env->size += ft_putchar('0');
-			i++;
-		}
-	}
+	if (env->flags.hashtag == 1 && nb != 0 && env->flags.zero == 0)
+		env->size += ft_putchar('0');
 	return (0);
 }
 
-static int	get_space(t_env *env, long long nb, int zero)
-{
-	int	space;
-
-	space = 0;
-	if (env->precision == 0 && nb == 0)
-		space = env->width;
-	else if (zero != 0 && nb >= 0)
-		space = env->width - zero - ft_size_oct(nb);
-	else if (zero == 0 && nb >= 0)
-		space = env->width - ft_size_oct(nb);
-	return (space);
-}
-
-static void	ft_print(int space, int zero, t_env *env)
-{
-	int	i;
-
-	i = 0;
-	while (i < space)
-	{
-		env->size += ft_putchar(' ');
-		i++;
-	}
-	i = 0;
-	while (i < zero)
-	{
-		env->size += ft_putchar('0');
-		i++;
-	}
-}
-
-static int	print_width_precision(int nb, t_env *env)
+static int		print_width_precision(int nb, t_env *env)
 {
 	int	space;
 	int	zero;
@@ -122,8 +70,15 @@ static int	print_width_precision(int nb, t_env *env)
 	size = ft_size_oct(nb);
 	if (env->precision > size)
 		zero = env->precision - size;
-	space = get_space(env, nb, zero);
-	ft_print(space, zero, env);
+	if (env->precision == 0 && nb == 0)
+		space = env->width;
+	else if (zero != 0 && nb >= 0)
+		space = env->width - zero - ft_size_oct(nb);
+	else if (zero == 0 && nb >= 0)
+		space = env->width - ft_size_oct(nb);
+	else
+		space = 0;
+	ft_print_un(space, zero, env);
 	if (env->precision == 0 && nb == 0)
 		return (0);
 	env->size += ft_size_oct(nb);
@@ -132,7 +87,7 @@ static int	print_width_precision(int nb, t_env *env)
 	return (0);
 }
 
-static int	print_preciwidth_o(unsigned long long nb, t_env *env)
+static int		print_preciwidth_o(unsigned long long nb, t_env *env)
 {
 	int	i;
 	int	size;
@@ -161,22 +116,20 @@ static int	print_preciwidth_o(unsigned long long nb, t_env *env)
 	return (size);
 }
 
-int			ft_print_o_cap(va_list ap, t_env *env)
+int				ft_print_o_cap(va_list ap, t_env *env)
 {
-	int					ret;
 	unsigned long long	nb;
 
-	ret = 0;
 	nb = va_arg(ap, unsigned long);
-	if (neg_flag(env) == 1)
+	if (env->flags.neg == 1)
 	{
-		if (hashtag_flag(env) == 1)
+		if (env->flags.hashtag == 1)
 			env->size += ft_putchar('0');
 		env->size += print_precision_o(nb, env);
 		print_width_neg(nb, env);
-		return (ret);
+		return (0);
 	}
-	if (hashtag_flag(env) == 1 && env->width == -1 && nb != 0)
+	if (env->flags.hashtag == 1 && env->width == -1 && nb != 0)
 		env->size += ft_putchar('0');
 	if (env->width == -1 && env->precision == -1)
 	{
@@ -193,5 +146,5 @@ int			ft_print_o_cap(va_list ap, t_env *env)
 		env->size += print_precision_o(nb, env);
 	else if (env->width != -1 && env->precision != -1)
 		print_preciwidth_o(nb, env);
-	return (ret);
+	return (0);
 }

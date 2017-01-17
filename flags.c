@@ -6,37 +6,26 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 10:59:09 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/13 11:29:46 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/17 14:39:22 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-t_flag	*ft_lstnew(char c, int pos)
+void	add_flag(t_env *env, char value)
 {
-	t_flag		*new_elem;
-
-	if (!(new_elem = malloc(sizeof(t_flag))))
-		return (NULL);
-	new_elem->value = c;
-	new_elem->pos = pos;
-	new_elem->next = NULL;
-	return (new_elem);
-}
-
-void	add_flag(t_env *env, char value, int pos)
-{
-	t_flag	*new_flag;
-
-	new_flag = ft_lstnew(value, pos);
-	if (env->flags->first == NULL)
-		env->flags->first = new_flag;
+	if (value == ' ')
+		env->flags.space = 1;
+	else if (value == '#')
+		env->flags.hashtag = 1;
+	else if (value == '-')
+		env->flags.neg = 1;
+	else if (value == '+')
+		env->flags.pos = 1;
+	else if (value == '0')
+		env->flags.zero = 1;
 	else
-	{
-		new_flag->next = env->flags->first;
-		env->flags->first = new_flag;
-	}
-	env->flags->nb++;
+		return ;
 }
 
 int		check_flag(char c)

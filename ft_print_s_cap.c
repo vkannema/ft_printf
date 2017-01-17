@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_s_cap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/12 13:20:34 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/17 18:33:07 by vkannema         ###   ########.fr       */
+/*   Created: 2017/01/16 15:19:48 by vkannema          #+#    #+#             */
+/*   Updated: 2017/01/16 16:16:42 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libftprintf.h"
-#include <wchar.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <locale.h>
 
-int	main(void)
+
+int	ft_print_s_cap(va_list ap, t_env *env)
 {
-	int	i;
-
-	setlocale(LC_ALL, "");
-	i = 0;
-	printf("%d\n\n", printf("%C\n", 945));
-	ft_printf("%d\n\n", ft_printf("%C\n", 945));
-	while (i < 42)
-		;
+	(void) ap;
+	(void) env;
 	return (0);
 }
