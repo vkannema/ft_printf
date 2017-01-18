@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_X.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/22 17:49:39 by vkannema          #+#    #+#             */
-/*   Updated: 2016/12/22 17:50:30 by vkannema         ###   ########.fr       */
+/*   Created: 2016/11/02 16:46:22 by vkannema          #+#    #+#             */
+/*   Updated: 2017/01/18 19:37:10 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
-static int	ft_puthexa(unsigned int nb, int ret)
+int	ft_putstr(const char *s)
 {
-	size_t beg;
-	size_t end;
-	const char	*base;
+	int i;
 
-	base = "0123456789ABCDEF";
-	end = nb % 16;
-	beg = (nb - end) / 16;
-	if (beg)
-		ft_puthexa(beg, ret++);
-	ft_putchar(base[end]);
-	return (ret);
-}
-
-int	ft_print_X(va_list ap, t_env *env)
-{
-	int			ret;
-	unsigned int	nb;
-
-	nb = va_arg(ap, unsigned int);
-	ret = ft_puthexa(nb, 1);
-	env->size = ret;
-	return (ret);
-
+	i = 0;
+	if (s)
+	{
+		while (s[i] != '\0')
+		{
+			ft_putchar(s[i]);
+			i++;
+		}
+	}
+	return (i);
 }

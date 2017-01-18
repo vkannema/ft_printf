@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/18 18:14:31 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/18 19:18:16 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "./libft/libft.h"
+# include "./libft.h"
 
 typedef struct	s_flags
 {
@@ -42,13 +42,11 @@ typedef struct	s_env
 	t_flags		flags;
 }				t_env;
 
-int				ft_isdigit(int c);
 int				ft_strlen(char *str);
 int				ft_putchar(char c);
 int				ft_putstr(const char *s);
 void			ft_putoctal(unsigned int nb);
 int				ft_size_nbr(long long n);
-int				ft_atoi(const char *str);
 void			ft_putnbr(long long n);
 void			ft_puthexa(unsigned long long nb, const char *base);
 void			ft_putunsigned(unsigned long long n);

@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkannema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 19:52:22 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/05 11:31:33 by vkannema         ###   ########.fr       */
+/*   Created: 2016/11/07 18:26:45 by vkannema          #+#    #+#             */
+/*   Updated: 2016/11/07 18:43:16 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-void	ft_memdel(void **ap)
+void	ft_bzero(void *s, size_t n)
 {
-	if (*ap)
+	size_t	i;
+
+	i = 0;
+	while (i < n)
 	{
-		free(*ap);
-		*ap = NULL;
+		((char *)s)[i] = 0;
+		i++;
 	}
 }

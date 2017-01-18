@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_push_back.c                                :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkannema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/23 15:49:37 by vkannema          #+#    #+#             */
-/*   Updated: 2016/08/25 15:37:26 by vkannema         ###   ########.fr       */
+/*   Created: 2016/11/10 17:56:12 by vkannema          #+#    #+#             */
+/*   Updated: 2016/11/12 10:34:48 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
+#include "libft.h"
 
-void	ft_list_push_back(t_list **begin_list, void *data)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list *current;
+	t_list *new_list;
 
-	current = *begin_list;
-	if (current == NULL)
-		*begin_list = ft_create_elem(data);
-	else
+	new_list = NULL;
+	if (lst && f)
 	{
-		while (current->next)
-			current = current->next;
-		current->next = ft_create_elem(data);
+		new_list = (*f)(lst);
+		if (new_list && lst->next)
+			new_list->next = ft_lstmap(lst->next, f);
 	}
+	return (new_list);
 }

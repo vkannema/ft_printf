@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkannema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 12:17:49 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/04 11:38:21 by vkannema         ###   ########.fr       */
+/*   Created: 2016/11/10 16:55:38 by vkannema          #+#    #+#             */
+/*   Updated: 2016/11/11 10:15:20 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int	ft_isdigit(int c)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	if (c <= '9' && c >= '0')
-		return (1);
-	else
-		return (0);
+	void	*tmp;
+
+	while (*alst)
+	{
+		tmp = (*alst)->next;
+		ft_lstdelone(alst, del);
+		*alst = tmp;
+	}
+	*alst = NULL;
 }
