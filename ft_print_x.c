@@ -6,33 +6,11 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 17:15:56 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/17 18:28:59 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/18 17:47:32 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-static int	print_width_neg(unsigned long long nb, t_env *env)
-{
-	int	size;
-	int	width;
-	int	i;
-
-	i = 0;
-	size = ft_size_hexa(nb);
-	width = env->width - size;
-	if (env->flags.hashtag == 1)
-		width -= 2;
-	while (width > i)
-	{
-		if (env->zero_width == 0 || env->flags.neg == 1)
-			env->size += ft_putchar(' ');
-		if (env->zero_width == 1 && env->flags.neg != 1)
-			env->size += ft_putchar('0');
-		i++;
-	}
-	return (0);
-}
 
 static int	print_width(unsigned long long nb, t_env *env)
 {
@@ -40,7 +18,7 @@ static int	print_width(unsigned long long nb, t_env *env)
 	int	i;
 
 	i = 0;
-	width = env->width - ft_size_hexa(nb);
+	width = env->width - ft_size_hexoc(nb, 16);
 	if (env->flags.hashtag == 1)
 		width -= 2;
 	if (env->flags.hashtag == 1 && nb != 0 && env->flags.zero == 1)
@@ -71,9 +49,9 @@ static int	print_width_precision(int nb, t_env *env)
 	if (env->precision == 0 && nb == 0)
 		space = env->width;
 	else if (zero != 0 && nb >= 0)
-		space = env->width - zero - ft_size_hexa(nb);
+		space = env->width - zero - ft_size_hexoc(nb, 16);
 	else if (zero == 0 && nb >= 0)
-		space = env->width - ft_size_hexa(nb);
+		space = env->width - ft_size_hexoc(nb, 16);
 	else
 		space = 0;
 	ft_print_un(space, zero, env);
@@ -94,7 +72,7 @@ int			print_preciwidth_x(unsigned long long nb,
 
 	i = 0;
 	j = 0;
-	size = ft_size_hexa(nb);
+	size = ft_size_hexoc(nb, 16);
 	if (env->width > env->precision)
 		print_width_precision(nb, env);
 	else
@@ -110,7 +88,7 @@ int			print_preciwidth_x(unsigned long long nb,
 		}
 		if (nb != 0)
 			ft_puthexa(nb, base);
-		env->size += ft_size_hexa(nb);
+		env->size += ft_size_hexoc(nb, 16);
 	}
 	return (size);
 }
@@ -120,35 +98,15 @@ int			ft_print_x(va_list ap, t_env *env)
 	unsigned long long	nb;
 
 	nb = convert_u(ap, env);
-	if (env->flags.neg == 1)
-	{
-		if (env->flags.hashtag == 1)
-		{
-			ft_putstr("0x");
-			env->size += 2;
-		}
-		ft_puthexa(nb, "0123456789abcdef");
-		env->size += ft_size_hexa(nb);
-		print_width_neg(nb, env);
+	if (handle_flags_x(env, nb, "0123456789abcdef", 0) == 0)
 		return (0);
-	}
-	if (env->flags.hashtag == 1 && env->width == -1 && nb != 0)
-	{
-		ft_putstr("0x");
-		env->size = env->size + 2;
-	}
-	if (env->width == -1 && env->precision == -1)
-	{
-		env->size += ft_size_hexa(nb);
-		ft_puthexa(nb, "0123456789abcdef");
-	}
 	else if (env->precision == -1 && env->width != -1)
 	{
 		print_width(nb, env);
 		if (nb != 0)
 		{
 			ft_puthexa(nb, "0123456789abcdef");
-			env->size += ft_size_hexa(nb);
+			env->size += ft_size_hexoc(nb, 16);
 		}
 	}
 	else if (env->width == -1 && env->precision != -1)

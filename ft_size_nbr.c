@@ -6,25 +6,44 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 14:47:24 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/13 12:00:42 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/18 18:40:16 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_size_oct(unsigned long long nb)
+int	ft_size_bin(unsigned int nb)
 {
 	size_t	beg;
 	size_t	end;
 	int		i;
 
-	end = nb % 8;
-	beg = (nb - end) / 8;
-	i = 1;
+	i = 0;
+	end = nb % 2;
+	beg = (nb - end) / 2;
+	i++;
 	while (beg)
 	{
-		end = beg % 8;
-		beg = (beg - end) / 8;
+		end = beg % 2;
+		beg = (beg - end) / 2;
+		i++;
+	}
+	return (i);
+}
+
+int	ft_size_hexoc(unsigned long long nb, int base)
+{
+	size_t	beg;
+	size_t	end;
+	int		i;
+
+	i = 1;
+	end = nb % base;
+	beg = (nb - end) / base;
+	while (beg)
+	{
+		end = beg % base;
+		beg = (beg - end) / base;
 		i++;
 	}
 	return (i);
@@ -76,25 +95,6 @@ int	ft_size_abs(long long n)
 		size++;
 	}
 	return (size);
-}
-
-int	ft_size_hexa(unsigned long long nb)
-{
-	size_t	beg;
-	size_t	end;
-	int		i;
-
-	i = 0;
-	end = nb % 16;
-	beg = (nb - end) / 16;
-	i++;
-	while (beg)
-	{
-		end = beg % 16;
-		beg = (beg - end) / 16;
-		i++;
-	}
-	return (i);
 }
 
 int	ft_size_unsigned(unsigned long long n)

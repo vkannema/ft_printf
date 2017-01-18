@@ -6,13 +6,13 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 11:57:14 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/17 18:31:12 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/18 17:51:33 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int		print_width(unsigned long long nb, t_env *env)
+int				print_width_u(unsigned long long nb, t_env *env)
 {
 	int	size;
 	int	width;
@@ -82,7 +82,7 @@ static int		print_preciwidth_u(unsigned long long nb, t_env *env)
 
 	i = 0;
 	j = 0;
-	size = ft_size_hexa(nb);
+	size = ft_size_unsigned(nb);
 	if (env->width > env->precision)
 		print_width_precision(nb, env);
 	else
@@ -105,26 +105,14 @@ static int		print_preciwidth_u(unsigned long long nb, t_env *env)
 
 int				ft_print_u(va_list ap, t_env *env)
 {
-	int					ret;
 	unsigned long long	nb;
 
-	ret = 0;
 	nb = convert_u(ap, env);
-	if (env->flags.neg == 1)
-	{
-		ft_putunsigned(nb);
-		print_width(nb, env);
-		env->size += ft_size_unsigned(nb);
-		return (ret);
-	}
-	if (env->width == -1 && env->precision == -1)
-	{
-		ft_putunsigned(nb);
-		env->size += ft_size_unsigned(nb);
-	}
+	if (handle_flags_u(env, nb) == 0)
+		return (0);
 	else if (env->width != -1 && env->precision == -1)
 	{
-		ret = print_width(nb, env);
+		print_width_u(nb, env);
 		env->size += ft_size_unsigned(nb);
 		ft_putunsigned(nb);
 	}
@@ -132,5 +120,5 @@ int				ft_print_u(va_list ap, t_env *env)
 		env->size += print_precision_u(nb, env);
 	else if (env->width != -1 && env->precision != -1)
 		print_preciwidth_u(nb, env);
-	return (ret);
+	return (0);
 }

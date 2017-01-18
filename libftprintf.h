@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/17 16:43:45 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/18 18:14:31 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct	s_flags
 	int			hashtag;
 	int			zero;
 }				t_flags;
+
 typedef struct	s_env
 {
 	int			i;
@@ -51,7 +52,6 @@ int				ft_atoi(const char *str);
 void			ft_putnbr(long long n);
 void			ft_puthexa(unsigned long long nb, const char *base);
 void			ft_putunsigned(unsigned long long n);
-int				ft_size_oct(unsigned long long nb);
 void			ft_memdel(void **ap);
 void			ft_putabs(long long n);
 int				ft_printf(const char *format, ...);
@@ -63,8 +63,9 @@ int				get_precision(const char *format, int i, t_env *env);
 int				get_precision_star(t_env *env, va_list ap);
 void			ft_print_un(int space, int zero, t_env *env);
 int				ft_size_abs(long long n);
-int				ft_size_hexa(unsigned long long nb);
+int				ft_size_hexoc(unsigned long long nb, int base);
 int				ft_size_unsigned(unsigned long long n);
+int				ft_size_bin(unsigned int nb);
 void			ft_putunsigned_cap(unsigned long long n);
 int				ft_print_c(va_list ap, t_env *env);
 int				ft_print_s(va_list ap, t_env *env);
@@ -86,10 +87,16 @@ int				print_precision_x(unsigned long long nb,
 					t_env *env, const char *base);
 int				print_precision_o(unsigned int nb, t_env *env);
 int				print_width_str(char *str, t_env *env);
+int				print_width_neg_o(unsigned long long nb, t_env *env);
+int				print_width_u(unsigned long long nb, t_env *env);
 int				print_preciwidth_di(long long nb, t_env *env);
 int				print_precision_u(unsigned long long nb, t_env *env);
 void			add_flag(t_env *env, char value);
 int				check_flag(char c);
+int				handle_flags_x(t_env *env, unsigned long long nb,
+				const char *base, int cap);
+int				handle_flags_o(t_env *env, unsigned long long nb);
+int				handle_flags_u(t_env *env, unsigned long long nb);
 int				ft_check_modif(char c);
 int				get_modif(const char *format, int i, t_env *env);
 intmax_t		convert(va_list ap, t_env *env);

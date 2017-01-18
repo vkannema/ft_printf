@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 14:10:14 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/17 17:37:47 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/18 17:48:23 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	print_precision_o(unsigned int nb, t_env *env)
 		return (0);
 	ret = 0;
 	precision = env->precision;
-	size = ft_size_oct(nb);
+	size = ft_size_hexoc(nb, 8);
 	ret += size;
 	while (size < precision)
 	{
@@ -45,7 +45,7 @@ int	print_precision_x(unsigned long long nb, t_env *env, const char *base)
 	if (nb == 0)
 		return (0);
 	ret = 0;
-	size = ft_size_hexa(nb);
+	size = ft_size_hexoc(nb, 16);
 	precision = env->precision;
 	while (size <= precision)
 	{
@@ -54,7 +54,7 @@ int	print_precision_x(unsigned long long nb, t_env *env, const char *base)
 		ret++;
 	}
 	ft_puthexa(nb, base);
-	ret += ft_size_hexa(nb);
+	ret += ft_size_hexoc(nb, 16);
 	return (ret);
 }
 

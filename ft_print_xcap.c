@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/28 12:33:04 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/17 18:51:59 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/18 17:50:56 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	print_width(unsigned long long nb, t_env *env)
 	int	i;
 
 	i = 0;
-	width = env->width - ft_size_hexa(nb);
+	width = env->width - ft_size_hexoc(nb, 16);
 	if (env->flags.hashtag == 1)
 		width -= 2;
 	if (env->flags.hashtag == 1 && nb != 0)
@@ -49,9 +49,9 @@ static int	print_width_precision(int nb, t_env *env)
 	if (env->precision == 0 && nb == 0)
 		space = env->width;
 	else if (zero != 0 && nb >= 0)
-		space = env->width - zero - ft_size_hexa(nb);
+		space = env->width - zero - ft_size_hexoc(nb, 16);
 	else if (zero == 0 && nb >= 0)
-		space = env->width - ft_size_hexa(nb);
+		space = env->width - ft_size_hexoc(nb, 16);
 	else
 		space = 0;
 	ft_print_un(space, zero, env);
@@ -72,7 +72,7 @@ static int	print_preciwidth_x(unsigned long long nb,
 
 	i = 0;
 	j = 0;
-	size = ft_size_hexa(nb);
+	size = ft_size_hexoc(nb, 16);
 	if (env->width > env->precision)
 		print_width_precision(nb, env);
 	else
@@ -88,44 +88,27 @@ static int	print_preciwidth_x(unsigned long long nb,
 		}
 		if (nb != 0)
 			ft_puthexa(nb, base);
-		env->size += ft_size_hexa(nb);
+		env->size += ft_size_hexoc(nb, 16);
 	}
 	return (size);
 }
 
 int			ft_print_xcap(va_list ap, t_env *env)
 {
-	int					ret;
 	unsigned long long	nb;
 
-	ret = 0;
 	nb = convert_u(ap, env);
-	if (env->flags.neg == 1)
-	{
-		ft_puthexa(nb, "0123456789ABCDEF");
-		env->size += ft_size_hexa(nb);
-		print_width(nb, env);
-		return (ret);
-	}
-	if (env->flags.hashtag == 1 && env->width == -1 && nb != 0)
-	{
-		ret += ft_putstr("0X");
-		env->size = env->size + 2;
-	}
-	if (env->width == -1 && env->precision == -1)
-	{
-		env->size += ft_size_hexa(nb);
-		ft_puthexa(nb, "0123456789ABCDEF");
-	}
+	if (handle_flags_x(env, nb, "0123456789ABCDEF", 1) == 0)
+		return (0);
 	else if (env->precision == -1 && env->width != -1)
 	{
 		print_width(nb, env);
 		ft_puthexa(nb, "0123456789ABCDEF");
-		env->size += ft_size_hexa(nb);
+		env->size += ft_size_hexoc(nb, 16);
 	}
 	else if (env->width == -1 && env->precision != -1)
 		env->size += print_precision_x(nb, env, "0123456789ABCDEF");
 	else if (env->width != -1 && env->precision != -1)
 		print_preciwidth_x(nb, env, "0123456789ABCDEF");
-	return (ret);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 10:25:02 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/17 18:31:40 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/18 17:52:00 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	print_preciwidth_u(unsigned long long nb, t_env *env)
 
 	i = 0;
 	j = 0;
-	size = ft_size_hexa(nb);
+	size = ft_size_hexoc(nb, 16);
 	if (env->width > env->precision)
 		print_width_precision(nb, env);
 	else
