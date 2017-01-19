@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/28 12:33:04 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/18 17:50:56 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/19 13:33:44 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static int	print_width(unsigned long long nb, t_env *env)
 		env->size += ft_putstr("0X");
 	while (width > i)
 	{
-		if (env->zero_width == 0)
+		if (env->zero_width == 0 && env->flags.zero == 0)
 			env->size += ft_putchar(' ');
-		if (env->zero_width == 1)
+		if (env->zero_width == 1 || env->flags.zero == 1)
 			env->size += ft_putchar('0');
 		i++;
 	}

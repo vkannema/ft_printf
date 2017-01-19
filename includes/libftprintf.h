@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/18 19:18:16 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/19 13:40:13 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include "./libft.h"
+# include <limits.h>
 
 typedef struct	s_flags
 {
@@ -45,7 +45,7 @@ typedef struct	s_env
 int				ft_strlen(char *str);
 int				ft_putchar(char c);
 int				ft_putstr(const char *s);
-void			ft_putoctal(unsigned int nb);
+void			ft_putoctal(unsigned long long nb);
 int				ft_size_nbr(long long n);
 void			ft_putnbr(long long n);
 void			ft_puthexa(unsigned long long nb, const char *base);

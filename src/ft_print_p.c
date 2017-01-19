@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 21:29:05 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/13 11:44:53 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/19 13:30:03 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,35 @@ void			ft_putp(unsigned long int nb)
 	ft_putchar(base[end]);
 }
 
+void			print_width_p(unsigned long int nb, t_env *env, int ret)
+{
+	int	i;
+	int	size;
+
+	i = 0;
+	ret += ft_size_un(nb);
+	size = env->width - ret;
+	while (i < size)
+	{
+		env->size += ft_putchar(' ');
+		i++;
+	}
+}
+
 int				ft_print_p(va_list ap, t_env *env)
 {
 	int					ret;
 	unsigned long int	nb;
 
 	nb = va_arg(ap, unsigned long int);
+	ret = 0;
+	if (nb == 0)
+		ret += 2;
+	if (env->width != -1)
+		print_width_p(nb, env, ret);
 	ft_putstr("0x");
 	ft_putp(nb);
-	ret = ft_size_un(nb);
+	ret += ft_size_un(nb);
 	env->size += ret;
 	return (ret);
 }

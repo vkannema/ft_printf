@@ -6,13 +6,13 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 21:19:26 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/13 11:59:31 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/19 12:03:27 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	ft_putoctal(unsigned int nb)
+void	ft_putoctal(unsigned long long nb)
 {
 	size_t		beg;
 	size_t		end;

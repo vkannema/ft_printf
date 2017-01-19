@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 10:25:02 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/18 17:52:00 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/19 13:07:15 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int			ft_print_u_cap(va_list ap, t_env *env)
 {
 	unsigned long long	nb;
 
-	nb = va_arg(ap, unsigned long);
+	nb = va_arg(ap, unsigned long long);
 	if (env->flags.neg == 1)
 	{
 		ft_putunsigned_cap(nb);

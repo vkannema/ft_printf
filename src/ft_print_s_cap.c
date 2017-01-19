@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:19:48 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/18 18:58:53 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/19 13:36:03 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ static int		writechar(char *str, int tab, t_env *env)
 {
 	int	i;
 	int *res;
+	int	ind;
 
+	ind = 0;
 	i = ft_strlen(str) - 1;
 	env->size += tab + 1;
 	res = (int *)malloc(sizeof(int) * tab);
@@ -74,10 +76,11 @@ static int		writechar(char *str, int tab, t_env *env)
 	res[2] = 0;
 	res[3] = 0;
 	res = convert_to_int(res, tab, i, str);
-	write(1, &res[0], 1);
-	write(1, &res[1], 1);
-	write(1, &res[2], 1);
-	write(1, &res[3], 1);
+	while (res[ind] != 0)
+	{
+		write(1, &res[ind], 1);
+		ind++;
+	}
 	ft_memdel((void *)&res);
 	return (0);
 }
@@ -112,6 +115,8 @@ int				ft_print_s_cap(va_list ap, t_env *env)
 
 	i = 0;
 	str = va_arg(ap, unsigned int *);
+	if (!str)
+		return (env->size += ft_putstr("(null)"));
 	while (str[i] != '\0')
 	{
 		size = ft_size_bin(str[i]);

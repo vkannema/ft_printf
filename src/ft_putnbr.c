@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/10 10:43:43 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/13 11:59:05 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/19 13:15:53 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,9 @@ void		ft_putunsigned(unsigned long long n)
 
 void		ft_putunsigned_cap(unsigned long long n)
 {
-	if (n == 4294967295)
+	if (n >= ULONG_MAX)
 	{
-		ft_putstr("4294967295");
-		return ;
-	}
-	if (n > 4294967295)
-	{
-		ft_putstr("4294967296");
+		ft_putstr("18446744073709551615");
 		return ;
 	}
 	if (n > 9)

@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 10:14:10 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/13 11:06:02 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/19 12:01:20 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,19 @@ uintmax_t	convert_u(va_list ap, t_env *env)
 {
 	uintmax_t	nb;
 
-	nb = va_arg(ap, intmax_t);
 	if (env->modif == 'h' && env->dual == 1)
-		nb = (unsigned char)nb;
+		nb = (unsigned char)va_arg(ap, int);
 	else if (env->modif == 'l' && env->dual == 1)
-		nb = (unsigned long long)nb;
+		nb = va_arg(ap, unsigned long long);
 	else if (env->modif == 'h' && env->dual == 0)
-		nb = (unsigned short)nb;
+		nb = (unsigned short)va_arg(ap, int);
 	else if (env->modif == 'l' && env->dual == 0)
-		nb = (unsigned long)nb;
+		nb = va_arg(ap, unsigned long);
 	else if (env->modif == 'j')
-		nb = (uintmax_t)nb;
+		nb = va_arg(ap, uintmax_t);
 	else if (env->modif == 'z')
-		nb = (unsigned long)nb;
+		nb = va_arg(ap, unsigned long);
 	else
-		nb = (unsigned int)nb;
+		nb = va_arg(ap, unsigned int);
 	return (nb);
 }
