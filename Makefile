@@ -6,7 +6,7 @@
 #    By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/21 21:10:13 by vkannema          #+#    #+#              #
-#    Updated: 2017/01/19 13:51:44 by vkannema         ###   ########.fr        #
+#    Updated: 2017/01/19 13:55:26 by vkannema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ O_FILES = $(C_FILES:$(C_DIR)/%.c=$(O_DIR)/%.o)
 FLAGS = -Werror -Wextra -Wall
 
 all: $(NAME)
-	@echo "Libftprintf.a done"
 
 $(NAME): $(O_FILES)
 	@ar rcs $@ $^

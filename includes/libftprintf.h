@@ -6,7 +6,7 @@
 /*   By: vkannema <vkannema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 08:24:21 by vkannema          #+#    #+#             */
-/*   Updated: 2017/01/19 13:40:13 by vkannema         ###   ########.fr       */
+/*   Updated: 2017/01/31 14:40:48 by vkannema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@
 # include <stdlib.h>
 # include "./libft.h"
 # include <limits.h>
+# include <stdio.h>
+
+# define RESET "\033[0m"
+# define BLACK "\033[0;30m"
+# define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
+# define YELLOW "\033[0;33m"
+# define BLUE "\033[0;34m"
+# define PURPLE "\033[0;35m"
+# define CYAN "\033[0;36m"
+# define WHITE "\033[0;37m"
 
 typedef struct	s_flags
 {
@@ -39,6 +50,8 @@ typedef struct	s_env
 	int			zero_width;
 	char		modif;
 	int			dual;
+	int			color;
+	int			parsed;
 	t_flags		flags;
 }				t_env;
 
